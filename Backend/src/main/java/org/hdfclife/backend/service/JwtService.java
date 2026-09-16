@@ -1,5 +1,6 @@
 package org.hdfclife.backend.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,5 +34,34 @@ public class JwtService {
                 .expiration(expiry)
                 .signWith(secretKey)
                 .compact();
+    }
+
+    public Claims extractClaims(String token) {
+
+        return Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public String extractUsername(String token) {
+
+        return extractClaims(token).getSubject();
+    }
+
+    public boolean validateToken(String token) {
+
+        try {
+
+            Claims claims = extractClaims(token);
+
+            return claims.getExpiration()
+                    .after(new Date());
+
+        } catch (Exception e) {
+
+            return false;
+        }
     }
 }
