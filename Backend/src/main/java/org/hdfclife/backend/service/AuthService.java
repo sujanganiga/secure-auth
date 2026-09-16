@@ -74,4 +74,16 @@ public class AuthService {
         return jwtService.extractUsername(token);
     }
 
+    public void logout(String token)
+    {
+        if(!tokenStore.containsToken(token))
+        {
+            throw new RuntimeException(
+                    "Invalid or already logged out token"
+            );
+        }
+
+        tokenStore.removeToken(token);
+    }
+
 }
