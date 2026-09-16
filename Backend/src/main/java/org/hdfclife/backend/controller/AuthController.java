@@ -1,5 +1,7 @@
 package org.hdfclife.backend.controller;
 
+import org.hdfclife.backend.dto.AuthResponse;
+import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.service.AuthService;
@@ -27,6 +29,13 @@ public class AuthController {
         return ResponseEntity.ok(
                 Map.of("message","Registration Successfull")
         );
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest)
+    {
+        AuthResponse response=authService.login(loginRequest);
+        return ResponseEntity.ok(response);
     }
 
 }
