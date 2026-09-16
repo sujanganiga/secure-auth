@@ -53,4 +53,25 @@ public class AuthService {
 
     }
 
+    public String authenticate(String token)
+    {
+        if(!tokenStore.containsToken(token))
+        {
+            throw new RuntimeException(
+                    "Session is invalid or logged out"
+            );
+        }
+
+        if(!jwtService.validateToken(token))
+        {
+            tokenStore.removeToken(token);
+
+            throw new RuntimeException(
+                    "Token expired or invalid"
+            );
+        }
+
+        return jwtService.extractUsername(token);
+    }
+
 }

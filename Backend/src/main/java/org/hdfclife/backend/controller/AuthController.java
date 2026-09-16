@@ -6,9 +6,7 @@ import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -36,6 +34,28 @@ public class AuthController {
     {
         AuthResponse response=authService.login(loginRequest);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/auth")
+    public ResponseEntity<?> auth(@RequestHeader(value = "Authorization",required = false) String authorization)
+    {
+        if(authorization==null || !authorization.startsWith("Bearer "))
+        {
+            return ResponseEntity
+                    .status(401)
+                    .body(
+                            Map.of("Message","Bearer token is required")
+                    );
+        }
+
+        String token=authorization.substring(7);
+        String username=authService.authenticate(token);
+        return ResponseEntity.ok(
+                Map.of(
+                        "username", username,
+                        "authenticated", true
+                )
+        );
     }
 
 }
