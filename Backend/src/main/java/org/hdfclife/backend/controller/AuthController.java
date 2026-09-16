@@ -58,4 +58,32 @@ public class AuthController {
         );
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization",required = false) String authorization)
+    {
+        if (authorization == null ||
+                !authorization.startsWith("Bearer ")) {
+
+            return ResponseEntity
+                    .status(401)
+                    .body(
+                            Map.of(
+                                    "message",
+                                    "Bearer token is required"
+                            )
+                    );
+        }
+
+        String token = authorization.substring(7);
+
+        authService.logout(token);
+
+        return ResponseEntity.ok(
+            Map.of(
+                    "message",
+                    "Logout successful"
+            )
+    );
+    }
+
 }
