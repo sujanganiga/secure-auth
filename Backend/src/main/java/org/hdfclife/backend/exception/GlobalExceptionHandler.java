@@ -75,6 +75,33 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler(LoginRateLimitExceededException.class)
+    public ResponseEntity<?> handleLoginRateLimitExceeded(
+            LoginRateLimitExceededException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.TOO_MANY_REQUESTS)
+                .body(Map.of(
+                        "error", "LOGIN_RATE_LIMIT_EXCEEDED",
+                        "message", ex.getMessage(),
+                        "status", 429
+                ));
+    }
+
+
+    @ExceptionHandler(LoginServiceUnavailableException.class)
+    public ResponseEntity<?> handleLoginServiceUnavailable(
+            LoginServiceUnavailableException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(Map.of(
+                        "error", "LOGIN_SERVICE_UNAVAILABLE",
+                        "message", ex.getMessage(),
+                        "status", 503
+                ));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnexpectedException(
             Exception ex) {
@@ -87,4 +114,6 @@ public class GlobalExceptionHandler {
                         "status", 500
                 ));
     }
+
+
 }

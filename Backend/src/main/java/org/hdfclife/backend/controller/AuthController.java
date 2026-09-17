@@ -7,6 +7,8 @@ import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.hdfclife.backend.resilience.LoginRateLimiterService;
 
 import java.util.Map;
 
@@ -15,9 +17,11 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
-    public AuthController(AuthService authService)
+    private final LoginRateLimiterService loginRateLimiterService;
+    public AuthController(AuthService authService, LoginRateLimiterService loginRateLimiterService)
     {
         this.authService=authService;
+        this.loginRateLimiterService = loginRateLimiterService;
     }
 
     @PostMapping("/register")
@@ -30,10 +34,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest)
-    {
-        AuthResponse response=authService.login(loginRequest);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+
+        String username = loginRequest.getUsername();
+        String ipAddress = request.getRemoteAddr();
+
+        loginRateLimiterService.checkLoginAttempt(username,ipAddress);
+
+        return ResponseEntity.ok(authService.login(loginRequest));
     }
 
     @GetMapping("/auth")
