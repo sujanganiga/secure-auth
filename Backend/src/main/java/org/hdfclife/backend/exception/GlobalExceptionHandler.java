@@ -10,44 +10,79 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<?> handleRuntimeException(RuntimeException ex) {
+    @ExceptionHandler(InvalidCredentialException.class)
+    public ResponseEntity<?> handleInvalidCredential(
+            InvalidCredentialException ex) {
 
-        String message = ex.getMessage();
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of(
+                        "error", "INVALID_CREDENTIALS",
+                        "message", ex.getMessage(),
+                        "status", 401
+                ));
+    }
 
-        if ("Invalid username or password".equals(message)) {
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of(
-                            "message", message,
-                            "status", 401
-                    ));
-        }
+    @ExceptionHandler(InvalidAuthorizationException.class)
+    public ResponseEntity<?> handleInvalidAuthorization(
+            InvalidAuthorizationException ex) {
 
-        if ("Session is invalid or logged out".equals(message)
-                || "Token expired or invalid".equals(message)
-                || "Invalid or already logged out token".equals(message)) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of(
+                        "error", "INVALID_AUTHORIZATION",
+                        "message", ex.getMessage(),
+                        "status", 401
+                ));
+    }
 
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of(
-                            "message", message,
-                            "status", 401
-                    ));
-        }
+    @ExceptionHandler(TokenExpiredException.class)
+    public ResponseEntity<?> handleTokenExpired(
+            TokenExpiredException ex) {
 
-        if ("Username already exists".equals(message)) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body(Map.of(
-                            "message", message,
-                            "status", 409
-                    ));
-        }
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of(
+                        "error", "TOKEN_EXPIRED",
+                        "message", ex.getMessage(),
+                        "status", 401
+                ));
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<?> handleInvalidToken(
+            InvalidTokenException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of(
+                        "error", "INVALID_TOKEN",
+                        "message", ex.getMessage(),
+                        "status", 401
+                ));
+    }
+
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ResponseEntity<?> handleUsernameAlreadyExists(
+            UsernameAlreadyExistsException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(Map.of(
+                        "error", "USERNAME_ALREADY_EXISTS",
+                        "message", ex.getMessage(),
+                        "status", 409
+                ));
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleUnexpectedException(
+            Exception ex) {
 
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of(
+                        "error", "INTERNAL_SERVER_ERROR",
                         "message", "An unexpected error occurred",
                         "status", 500
                 ));
