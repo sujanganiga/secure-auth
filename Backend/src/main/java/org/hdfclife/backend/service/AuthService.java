@@ -5,8 +5,11 @@ import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.repository.UserRepository;
+import org.hdfclife.backend.resilience.LoginCircuitBreakerService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.hdfclife.backend.dto.ExternalLoginRequest;
+import org.hdfclife.backend.dto.ExternalLoginResponse;
 
 @Service
 public class AuthService {
@@ -15,12 +18,14 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final TokenStore tokenStore;
-    public AuthService(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtService jwtService,TokenStore tokenStore)
+    private final LoginCircuitBreakerService loginCircuitBreakerService;
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, TokenStore tokenStore, LoginCircuitBreakerService loginCircuitBreakerService)
     {
         this.userRepository=userRepository;
         this.passwordEncoder=passwordEncoder;
         this.jwtService=jwtService;
         this.tokenStore=tokenStore;
+        this.loginCircuitBreakerService = loginCircuitBreakerService;
     }
 
     public void register(RegisterRequest request)
@@ -37,19 +42,22 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request)
     {
-        User user=userRepository.findByUsername(request.getUsername())
-                .orElseThrow(()->new RuntimeException("Invalid username or password"));
+        ExternalLoginRequest externalRequest =
+                new ExternalLoginRequest(
+                        request.getUsername(),
+                        request.getPassword()
+                );
 
-        boolean passwordMatches=passwordEncoder.matches(request.getPassword(),user.getPassword());
+        ExternalLoginResponse response = loginCircuitBreakerService.login(externalRequest);
 
-        if(!passwordMatches)
+        if(!response.isAuthenticated())
         {
             throw new RuntimeException("Invalid username or password");
         }
 
-        String token=jwtService.generateToken(user.getUsername());
+        String token=jwtService.generateToken(response.getUsername());
         tokenStore.addToken(token);
-        return new AuthResponse(token,user.getUsername(),"Login Successful");
+        return new AuthResponse(token,response.getUsername(),"Login Successful");
 
     }
 
