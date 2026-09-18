@@ -70,7 +70,7 @@ public class AuthService {
         if(!tokenStore.containsToken(token))
         {
             throw new InvalidTokenException(
-                    "Session is invalid or logged out"
+                    "Token is invalid"
             );
         }
 
