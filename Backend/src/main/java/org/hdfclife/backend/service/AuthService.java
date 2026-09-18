@@ -4,6 +4,10 @@ import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
+import org.hdfclife.backend.exception.InvalidAuthorizationException;
+import org.hdfclife.backend.exception.InvalidCredentialException;
+import org.hdfclife.backend.exception.InvalidTokenException;
+import org.hdfclife.backend.exception.UsernameAlreadyExistsException;
 import org.hdfclife.backend.repository.UserRepository;
 import org.hdfclife.backend.resilience.LoginCircuitBreakerService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +36,7 @@ public class AuthService {
     {
         if(userRepository.existsByUsername(request.getUsername()))
         {
-            throw new RuntimeException("Username already exists");
+            throw new UsernameAlreadyExistsException("Username already exists");
         }
         String hashedPassword=passwordEncoder.encode(request.getPassword());
         User user=new User(request.getUsername(),hashedPassword);
@@ -52,7 +56,7 @@ public class AuthService {
 
         if(!response.isAuthenticated())
         {
-            throw new RuntimeException("Invalid username or password");
+            throw new InvalidCredentialException("Invalid username or password");
         }
 
         String token=jwtService.generateToken(response.getUsername());
@@ -65,7 +69,7 @@ public class AuthService {
     {
         if(!tokenStore.containsToken(token))
         {
-            throw new RuntimeException(
+            throw new InvalidTokenException(
                     "Session is invalid or logged out"
             );
         }
@@ -86,7 +90,7 @@ public class AuthService {
     {
         if(!tokenStore.containsToken(token))
         {
-            throw new RuntimeException(
+            throw new InvalidTokenException(
                     "Invalid or already logged out token"
             );
         }

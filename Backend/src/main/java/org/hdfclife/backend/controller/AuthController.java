@@ -4,6 +4,7 @@ import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
+import org.hdfclife.backend.exception.InvalidAuthorizationException;
 import org.hdfclife.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,14 +73,9 @@ public class AuthController {
         if (authorization == null ||
                 !authorization.startsWith("Bearer ")) {
 
-            return ResponseEntity
-                    .status(401)
-                    .body(
-                            Map.of(
-                                    "message",
-                                    "Bearer token is required"
-                            )
-                    );
+            throw new InvalidAuthorizationException(
+                    "Bearer token is required"
+            );
         }
 
         String token = authorization.substring(7);
