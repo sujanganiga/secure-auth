@@ -1,0 +1,629 @@
+2026-09-17 11:30:23.979 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 21.0.12 with PID 4341 (/Users/VANITHA01/git/secure-auth/Backend/target/classes started by VANITHA01 in /Users/VANITHA01/git/secure-auth/Backend)
+2026-09-17 11:30:23.979 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 11:30:23.979 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 11:30:24.160 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 11:30:24.175 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 1 JPA repository interface.
+2026-09-17 11:30:24.313 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 11:30:24.317 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:30:24.318 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 11:30:24.318 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 11:30:24.331 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 340 ms
+2026-09-17 11:30:24.345 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 11:30:24.382 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 11:30:24.402 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 11:30:24.500 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 11:30:24.508 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 11:30:27.288 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6706da3d
+2026-09-17 11:30:27.290 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 11:30:29.248 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 11:30:29.522 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 11:30:30.276 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 11:30:30.323 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 11:30:30.380 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 11:30:30.405 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 1b9fa876-2823-4a9d-a403-7263e054fb66
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 11:30:30.407 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 11:30:30.513 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:30:30.520 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 11:30:30.522 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 6.682 seconds (process running for 6.786)
+2026-09-17 11:42:47.667 INFO  [RMI TCP Connection(14)-192.168.254.32] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2026-09-17 11:42:47.672 INFO  [RMI TCP Connection(14)-192.168.254.32] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 11:42:47.673 INFO  [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:42:47.675 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 11:42:47.676 INFO  [RMI TCP Connection(14)-192.168.254.32] o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:42:47.680 INFO  [RMI TCP Connection(14)-192.168.254.32] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 11:42:47.682 INFO  [RMI TCP Connection(14)-192.168.254.32] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 11:42:50.163 INFO  [RMI TCP Connection(14)-192.168.254.32] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 11:43:37.290 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 21.0.12 with PID 4774 (/Users/VANITHA01/git/secure-auth/Backend/target/classes started by VANITHA01 in /Users/VANITHA01/git/secure-auth/Backend)
+2026-09-17 11:43:37.291 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 11:43:37.291 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 11:43:37.446 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 11:43:37.462 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 1 JPA repository interface.
+2026-09-17 11:43:37.600 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 11:43:37.604 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:43:37.604 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 11:43:37.605 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 11:43:37.618 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 316 ms
+2026-09-17 11:43:37.632 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 11:43:37.668 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 11:43:37.684 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 11:43:37.788 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 11:43:37.796 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 11:43:41.270 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6159fb3c
+2026-09-17 11:43:41.271 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 11:43:43.532 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 11:43:43.808 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 11:43:45.041 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 11:43:45.090 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 11:43:45.150 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 11:43:45.177 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 8a527404-cf48-45b9-891c-362669ae856b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 11:43:45.180 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 11:43:45.296 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 11:43:45.301 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 11:43:45.303 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 8.149 seconds (process running for 8.253)
+2026-09-17 11:44:17.766 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 11:44:17.766 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 11:44:17.767 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-17 11:44:17.774 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 11:44:18.471 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=401, duration=697ms
+2026-09-17 11:48:12.791 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/register
+2026-09-17 11:48:14.701 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/register, status=200, duration=1910ms
+2026-09-17 11:48:23.477 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 11:48:24.090 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=613ms
+2026-09-17 11:49:13.986 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 11:49:14.570 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=401, duration=584ms
+2026-09-17 11:49:24.824 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 11:49:24.835 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=11ms
+2026-09-17 11:50:09.088 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 11:50:09.092 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=4ms
+2026-09-17 11:50:31.949 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/register
+2026-09-17 11:50:32.430 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/register, status=409, duration=481ms
+2026-09-17 11:50:55.800 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/register
+2026-09-17 11:50:56.914 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/register, status=200, duration=1114ms
+2026-09-17 16:43:06.033 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2.1 with PID 48573 (/Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend/target/classes started by SUJAN01 in /Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend)
+2026-09-17 16:43:06.034 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 16:43:06.034 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 16:43:06.227 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 16:43:06.246 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2026-09-17 16:43:06.402 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 16:43:06.406 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 16:43:06.406 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 16:43:06.406 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 16:43:06.420 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 371 ms
+2026-09-17 16:43:06.434 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 16:43:06.479 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 16:43:06.494 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 16:43:06.630 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 16:43:06.639 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 16:43:09.457 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@620572db
+2026-09-17 16:43:09.458 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 16:43:10.855 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 16:43:11.135 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 16:43:12.010 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 16:43:12.047 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 16:43:12.117 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 16:43:12.147 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 7056417d-ff27-42cb-b067-dc11de308086
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 16:43:12.149 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 16:43:12.271 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 16:43:12.275 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 16:43:12.278 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 6.408 seconds (process running for 6.831)
+2026-09-17 16:44:53.849 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 16:44:53.849 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 16:44:53.855 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2026-09-17 16:44:53.865 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 16:44:54.777 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=912ms
+2026-09-17 16:49:35.228 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m25s631ms).
+2026-09-17 16:58:37.271 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@590e141f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:58:37.276 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m2s30ms).
+2026-09-17 16:58:51.075 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@506d0bb1 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:01.082 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@70d10e57 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:06.826 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/
+2026-09-17 16:59:06.844 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/, status=404, duration=18ms
+2026-09-17 16:59:06.891 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/favicon.ico
+2026-09-17 16:59:06.895 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/favicon.ico, status=404, duration=4ms
+2026-09-17 16:59:11.087 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@620572db (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:21.094 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@11ab0ab7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:31.099 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@29af18d6 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:41.106 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5df089bb (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 16:59:41.107 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m3s831ms).
+2026-09-17 16:59:51.112 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@653a5b8d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:00:01.119 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@168a3b7c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:00:07.954 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/login
+2026-09-17 17:00:07.960 WARN  [http-nio-8080-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-09-17 17:00:07.961 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/login, status=405, duration=7ms
+2026-09-17 17:00:11.123 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@19a8f3d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:00:20.284 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:00:20.864 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=580ms
+2026-09-17 17:02:41.910 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/register
+2026-09-17 17:02:43.282 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/register, status=200, duration=1372ms
+2026-09-17 17:12:21.834 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m10s668ms).
+2026-09-17 17:12:38.001 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:12:43.603 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@465b35c7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:12:48.011 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1c68c35a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:12:48.014 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2bbefd45 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:12:58.019 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7196897b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:12:58.027 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6596d692 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:12:58.028 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@399e5bb0 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:13:02.080 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@35d35a60 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:13:08.032 WARN  [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7c06d0a9 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:13:08.042 WARN  [http-nio-8080-exec-10] org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 0, SQLState: 08003
+2026-09-17 17:13:08.043 WARN  [http-nio-8080-exec-10] org.hibernate.orm.jdbc.error - HikariPool-1 - Connection is not available, request timed out after 30025ms (total=9, active=0, idle=9, waiting=0)
+2026-09-17 17:13:08.043 WARN  [http-nio-8080-exec-10] org.hibernate.orm.jdbc.error - HHH000247: ErrorCode: 0, SQLState: 08003
+2026-09-17 17:13:08.043 WARN  [http-nio-8080-exec-10] org.hibernate.orm.jdbc.error - HikariPool-1 - Connection is not available, request timed out after 30025ms (total=9, active=0, idle=9, waiting=0)
+2026-09-17 17:13:08.060 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=500, duration=30059ms
+2026-09-17 17:13:28.343 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4bdf1d99 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:13:31.812 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:13:31.818 WARN  [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2250359d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:13:32.406 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=594ms
+2026-09-17 17:14:37.406 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:14:38.060 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=654ms
+2026-09-17 17:19:27.124 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:19:27.662 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=538ms
+2026-09-17 17:19:36.611 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m38s254ms).
+2026-09-17 17:19:38.102 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@20ac74a3 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 17:21:50.113 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:21:50.689 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=576ms
+2026-09-17 17:24:03.736 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 17:24:03.740 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 17:24:03.742 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 17:24:03.744 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 17:24:06.794 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 17:24:17.892 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2.1 with PID 50395 (/Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend/target/classes started by SUJAN01 in /Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend)
+2026-09-17 17:24:17.893 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 17:24:17.893 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 17:24:18.096 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 17:24:18.115 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+2026-09-17 17:24:18.280 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 17:24:18.284 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 17:24:18.284 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 17:24:18.284 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 17:24:18.299 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 390 ms
+2026-09-17 17:24:18.314 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 17:24:18.358 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 17:24:18.377 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 17:24:18.503 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 17:24:18.512 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 17:24:21.028 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@56402642
+2026-09-17 17:24:21.029 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 17:24:22.401 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 17:24:22.739 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 17:24:23.427 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 17:24:23.473 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 17:24:23.539 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 17:24:23.569 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 522c97bb-9081-4adf-89d2-c91839f319bf
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 17:24:23.572 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 17:24:23.697 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 17:24:23.702 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 17:24:23.704 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 6.006 seconds (process running for 6.175)
+2026-09-17 17:24:48.199 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 17:24:48.199 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 17:24:48.200 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-17 17:24:48.229 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:24:48.940 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=401, duration=711ms
+2026-09-17 17:40:10.215 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m18s957ms).
+2026-09-17 17:46:35.009 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 17:46:35.014 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 17:46:35.016 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 17:46:35.020 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 17:46:37.782 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 17:46:40.495 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2.1 with PID 52392 (/Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend/target/classes started by SUJAN01 in /Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend)
+2026-09-17 17:46:40.495 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 17:46:40.496 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 17:46:40.708 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 17:46:40.725 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 1 JPA repository interface.
+2026-09-17 17:46:40.881 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 17:46:40.885 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 17:46:40.886 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 17:46:40.886 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 17:46:40.901 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 390 ms
+2026-09-17 17:46:40.916 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 17:46:40.964 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 17:46:40.990 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 17:46:41.117 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 17:46:41.128 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 17:46:43.837 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2b80497f
+2026-09-17 17:46:43.838 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 17:46:45.213 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 17:46:45.534 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 17:46:46.221 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 17:46:46.287 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 17:46:46.511 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 17:46:46.582 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: b517abaf-3b46-4639-bba9-45776ba68b06
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 17:46:46.586 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 17:46:46.739 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 17:46:46.744 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 17:46:46.746 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 6.439 seconds (process running for 6.658)
+2026-09-17 17:47:23.453 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 17:47:23.454 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 17:47:23.456 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-17 17:47:23.473 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 17:47:23.504 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=31ms
+2026-09-17 17:47:23.643 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 17:47:23.645 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=2ms
+2026-09-17 17:50:12.751 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=58s792ms).
+2026-09-17 17:50:41.729 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 17:50:42.520 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=791ms
+2026-09-17 18:07:33.316 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1289c218 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 18:07:33.321 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m50s537ms).
+2026-09-17 18:25:06.307 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@79ea467f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 18:56:05.516 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2b80497f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 19:21:53.499 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@70d10e57 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 19:21:53.500 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h14m20s179ms).
+2026-09-17 20:51:02.608 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h29m9s107ms).
+2026-09-17 20:51:13.715 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@632bdfda (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:51:23.721 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@69f01d63 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:51:33.727 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1447d736 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:51:43.732 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@34828c63 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:51:53.738 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4f6ece7b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:52:03.745 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@36cb5c5a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:52:03.747 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m1s140ms).
+2026-09-17 20:52:12.673 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7fa819c3 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:52:16.172 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@465b35c7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:52:18.882 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@a0a3ce3 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:52:28.688 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@35d35a60 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 20:54:25.766 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m22s12ms).
+2026-09-17 21:13:59.665 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 21:13:59.669 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 21:13:59.671 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 21:13:59.673 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 21:14:01.828 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 21:58:46.265 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2.1 with PID 57935 (/Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend/target/classes started by SUJAN01 in /Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend)
+2026-09-17 21:58:46.266 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 21:58:46.266 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 21:58:46.515 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 21:58:46.534 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+2026-09-17 21:58:46.712 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 21:58:46.717 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 21:58:46.718 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 21:58:46.718 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 21:58:46.742 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 457 ms
+2026-09-17 21:58:46.761 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 21:58:46.810 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 21:58:46.831 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 21:58:46.983 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 21:58:46.995 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 21:58:49.025 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@56402642
+2026-09-17 21:58:49.027 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 21:58:50.328 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 21:58:50.658 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 21:58:51.411 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 21:58:51.460 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 21:58:51.524 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 21:58:51.549 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 73f0929c-237b-49e0-b3df-21bbc7444291
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 21:58:51.551 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 21:58:51.671 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 21:58:51.676 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 21:58:51.679 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 5.649 seconds (process running for 5.841)
+2026-09-17 22:02:20.119 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 22:02:20.119 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 22:02:20.120 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-17 22:02:20.130 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:02:20.863 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=733ms
+2026-09-17 22:02:44.469 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:02:44.483 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=14ms
+2026-09-17 22:02:44.484 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:02:44.485 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=1ms
+2026-09-17 22:03:37.949 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 22:03:37.952 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 22:03:37.953 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 22:03:37.954 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 22:03:40.047 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 22:03:40.873 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2.1 with PID 58223 (/Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend/target/classes started by SUJAN01 in /Users/SUJAN01/Desktop/HDFC_Practice/capstone/secure-auth/Backend)
+2026-09-17 22:03:40.873 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17 22:03:40.873 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 22:03:41.088 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 22:03:41.108 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
+2026-09-17 22:03:41.252 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-17 22:03:41.255 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-17 22:03:41.256 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 22:03:41.256 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17 22:03:41.271 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 382 ms
+2026-09-17 22:03:41.290 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-17 22:03:41.333 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 22:03:41.350 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17 22:03:41.467 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 22:03:41.476 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 22:03:43.981 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@56402642
+2026-09-17 22:03:43.983 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 22:03:45.336 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 22:03:45.648 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 22:03:46.295 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 22:03:46.346 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 22:03:46.405 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 22:03:46.428 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: e66bb140-2d03-4653-b754-df8f426fca70
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-17 22:03:46.430 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17 22:03:46.535 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-17 22:03:46.539 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-17 22:03:46.541 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 5.827 seconds (process running for 5.972)
+2026-09-17 22:05:00.454 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 22:05:00.455 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 22:05:00.459 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-09-17 22:05:00.480 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:05:01.200 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=720ms
+2026-09-17 22:05:15.581 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:05:15.619 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=38ms
+2026-09-17 22:05:15.752 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:05:15.756 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 22:06:43.484 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:06:44.036 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=401, duration=552ms
+2026-09-17 22:07:48.219 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:07:48.783 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=401, duration=564ms
+2026-09-17 22:07:56.352 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:07:56.894 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=542ms
+2026-09-17 22:08:17.703 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:08:17.705 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 22:08:17.706 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:08:17.709 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 22:13:30.227 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:30.232 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:13:31.539 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:31.544 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:13:32.621 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:32.627 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=6ms
+2026-09-17 22:13:32.854 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:32.858 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 22:13:32.955 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:32.960 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:13:47.277 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:13:47.296 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=19ms
+2026-09-17 22:14:25.582 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:25.585 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 22:14:25.740 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:25.744 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 22:14:26.844 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:26.850 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=6ms
+2026-09-17 22:14:27.012 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:27.017 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:14:29.113 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:29.118 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:14:29.281 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 22:14:29.286 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-17 22:15:17.275 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:15:17.830 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=555ms
+2026-09-17 22:15:51.514 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 22:15:52.155 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=641ms
+2026-09-17 22:35:28.469 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@252fd9c0 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:51:25.097 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2b6b3323 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:51:25.305 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5b23678c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:00.786 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m32s388ms).
+2026-09-17 22:52:04.071 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@632bdfda (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:29.312 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@69f01d63 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:43.879 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1447d736 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:48.605 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@34828c63 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:54.907 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@653a5b8d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:52:56.607 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@56402642 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 22:53:06.841 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@168a3b7c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-09-17 23:01:46.428 WARN  [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m15s590ms).
+2026-09-17 23:19:23.861 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 23:19:24.422 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=562ms
+2026-09-17 23:19:37.299 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:19:37.303 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 23:19:41.258 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:19:41.260 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:19:41.427 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:19:41.430 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:21:11.126 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:21:11.128 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:21:11.128 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:21:11.130 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:33.783 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:33.787 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 23:22:33.788 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:33.790 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:35.633 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:35.635 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:35.636 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:35.638 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:35.875 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:35.877 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:35.878 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:35.879 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:22:36.162 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:36.164 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:36.165 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:36.167 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:22:36.370 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:36.373 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:22:36.374 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:22:36.377 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:26:53.102 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:26:53.112 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=10ms
+2026-09-17 23:33:41.170 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:33:41.181 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=11ms
+2026-09-17 23:33:41.182 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:33:41.184 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:33:56.779 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:33:56.781 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:33:56.782 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:33:56.785 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:34:10.592 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:34:10.594 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:34:10.595 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:34:10.597 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:35:43.854 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:35:43.859 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=5ms
+2026-09-17 23:35:43.860 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:35:43.862 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=401, duration=2ms
+2026-09-17 23:36:02.788 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 23:36:03.331 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=543ms
+2026-09-17 23:36:30.644 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:36:30.647 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:36:30.648 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:36:30.651 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:36:37.530 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:36:37.532 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:36:37.533 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:36:37.535 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:39:52.224 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 23:39:52.767 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=543ms
+2026-09-17 23:40:28.077 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:40:28.080 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:40:28.080 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:40:28.082 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:42:43.141 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:42:43.144 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:42:43.144 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:42:43.145 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:44:05.653 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:05.655 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:44:05.655 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:05.657 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:44:13.729 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:13.731 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:44:13.732 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:13.736 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 23:44:44.421 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:44.424 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:44:44.424 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:44:44.426 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:46:19.095 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 23:46:19.770 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=675ms
+2026-09-17 23:50:02.744 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:50:02.747 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:50:02.748 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:50:02.749 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:50:50.452 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:50:50.456 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-17 23:50:50.456 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:50:50.459 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:53:35.488 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:35.496 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=8ms
+2026-09-17 23:53:35.497 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:35.498 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:53:39.446 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:39.447 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:53:39.448 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:39.450 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:53:43.734 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:43.736 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:53:43.737 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:53:43.739 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:54:51.631 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:54:51.633 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:54:51.633 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:54:51.636 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:54:55.861 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:54:55.863 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:54:55.864 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:54:55.865 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
+2026-09-17 23:55:31.654 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-17 23:55:32.185 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=531ms
+2026-09-17 23:55:40.136 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:55:40.138 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:55:40.138 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:55:40.140 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=2ms
+2026-09-17 23:55:46.750 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:55:46.753 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=3ms
+2026-09-17 23:55:46.753 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-17 23:55:46.754 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=1ms
