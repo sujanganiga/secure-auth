@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { X } from "lucide-react";
+import {
+    X,
+    LayoutDashboard,
+    FileText,
+    ClipboardList,
+    BarChart3,
+    Sparkles,
+    Settings,
+} from "lucide-react";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -25,15 +33,16 @@ export default function Sidebar({
             {/* Sidebar */}
             <aside
                 className={`
-                    fixed top-16 left-0 z-50
-                    h-[calc(100vh-4rem)]
-                    w-64
+                    fixed top-0 left-0 z-50
+                    h-screen
+                    w-72
                     bg-white
                     border-r border-gray-200
-                    shadow-lg
+                    shadow-2xl
                     transform
                     transition-transform
                     duration-300
+                    ease-in-out
                     ${
                         isOpen
                             ? "translate-x-0"
@@ -41,74 +50,123 @@ export default function Sidebar({
                     }
                 `}
             >
-                {/* Sidebar header */}
-                <div className="flex items-center justify-between p-5 border-b border-gray-200">
-                    <h2 className="text-lg font-semibold text-gray-900">
-                        Menu
-                    </h2>
+                {/* Sidebar Header */}
+                <div className="h-16 flex items-center justify-between px-5 border-b border-gray-200">
+                    <div className="flex items-center">
+                        <img
+                            src="/images/HDFC_LOGO.jpeg"
+                            alt="HDFC Life"
+                            className="h-10 w-auto object-contain"
+                        />
+                    </div>
 
                     <button
                         type="button"
                         onClick={onClose}
-                        className="p-2 rounded-md hover:bg-gray-100"
+                        className="p-2 rounded-lg text-gray-500 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:scale-105 active:scale-95"
                         aria-label="Close menu"
                     >
-                        <X
-                            size={22}
-                            className="text-gray-700"
-                        />
+                        <X size={22} />
                     </button>
                 </div>
 
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">
 
+                    {/* Dashboard */}
                     <Link
                         href="/dashboard"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        Dashboard
+                        <LayoutDashboard
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            Dashboard
+                        </span>
                     </Link>
 
+                    {/* Policies */}
                     <Link
                         href="/policies"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        Policies
+                        <FileText
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            Policies
+                        </span>
                     </Link>
 
+                    {/* Claims */}
                     <Link
                         href="/claims"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        Claims
+                        <ClipboardList
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            Claims
+                        </span>
                     </Link>
 
+                    {/* Reports */}
                     <Link
                         href="/reports"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        Reports
+                        <BarChart3
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            Reports
+                        </span>
                     </Link>
 
+                    {/* AI Insights */}
                     <Link
                         href="/ai-insights"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        AI Insights
+                        <Sparkles
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            AI Insights
+                        </span>
                     </Link>
 
+                    {/* Settings */}
                     <Link
                         href="/settings"
                         onClick={onClose}
-                        className="block px-4 py-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
-                        Settings
+                        <Settings
+                            size={20}
+                            className="text-gray-500 transition-colors duration-200 group-hover:text-[#d71920]"
+                        />
+
+                        <span className="text-sm font-medium">
+                            Settings
+                        </span>
                     </Link>
 
                 </nav>
