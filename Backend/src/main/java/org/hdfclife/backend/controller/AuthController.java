@@ -2,6 +2,7 @@ package org.hdfclife.backend.controller;
 
 import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
+import org.hdfclife.backend.dto.RefreshRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.exception.InvalidAuthorizationException;
@@ -88,6 +89,12 @@ public class AuthController {
                     "Logout successful"
             )
     );
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest)
+    {
+        return ResponseEntity.ok(authService.refreshToken(refreshRequest.getRefreshToken()));
     }
 
 }

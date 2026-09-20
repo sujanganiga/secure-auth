@@ -315,3 +315,300 @@ This generated password is for development use only. Your security configuration
 2026-09-18 16:46:29.708 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=401, duration=3ms
 2026-09-18 16:47:03.251 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/logout
 2026-09-18 16:47:03.254 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=200, duration=3ms
+2026-09-19 22:50:46.428 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2 with PID 3541 (/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes started by R.V1498 in /Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend)
+2026-09-19 22:50:46.429 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-19 22:50:46.430 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-19 22:50:46.649 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-19 22:50:46.670 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
+2026-09-19 22:50:46.832 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-19 22:50:46.836 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-19 22:50:46.837 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-19 22:50:46.837 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-19 22:50:46.852 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 407 ms
+2026-09-19 22:50:46.869 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-19 22:50:46.919 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-19 22:50:46.940 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-19 22:50:47.073 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-19 22:50:47.084 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-19 22:50:50.846 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35d88a54
+2026-09-19 22:50:50.847 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-19 22:50:52.750 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-19 22:50:53.079 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-19 22:50:54.125 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-19 22:50:54.209 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-19 22:50:54.271 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-19 22:50:54.295 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 0c2d7cf5-0579-4d0e-b1bf-a066a5ef2bb0
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-19 22:50:54.297 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-19 22:50:54.418 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-19 22:50:54.422 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-19 22:50:54.424 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 8.166 seconds (process running for 8.335)
+2026-09-19 22:51:24.714 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-19 22:51:24.715 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-19 22:51:24.716 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-19 22:51:24.725 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-19 22:51:24.793 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/mock/external-login
+2026-09-19 22:51:25.670 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/mock/external-login, status=200, duration=877ms
+2026-09-19 22:51:25.707 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=982ms
+2026-09-19 22:51:40.631 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-19 22:51:40.675 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=44ms
+2026-09-19 22:51:55.746 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/logout
+2026-09-19 22:51:55.750 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=200, duration=4ms
+2026-09-19 22:52:56.329 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-19 22:52:57.337 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-19 22:52:57.344 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-19 22:52:57.346 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-19 22:53:00.477 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-20 10:21:26.891 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2 with PID 7776 (/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes started by R.V1498 in /Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend)
+2026-09-20 10:21:26.892 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-20 10:21:26.893 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-20 10:21:27.119 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-20 10:21:27.139 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2026-09-20 10:21:27.300 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-20 10:21:27.304 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-20 10:21:27.305 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-20 10:21:27.305 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-20 10:21:27.319 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 411 ms
+2026-09-20 10:21:27.335 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-20 10:21:27.384 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-20 10:21:27.405 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-20 10:21:27.537 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-20 10:21:27.548 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-20 10:21:31.550 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26c6288d
+2026-09-20 10:21:31.551 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-20 10:21:33.699 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-20 10:21:34.056 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-20 10:21:35.157 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 10:21:35.260 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-20 10:21:35.310 WARN  [main] o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/controller/AuthController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/AuthService.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'jwtService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/JwtService.class]: Unsatisfied dependency expressed through constructor parameter 2: Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "${jwt.refresh-expiration"
+2026-09-20 10:21:35.310 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 10:21:35.311 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-20 10:21:36.657 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-20 10:21:36.661 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-09-20 10:21:36.680 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-20 10:21:36.692 ERROR [main] o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/controller/AuthController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/AuthService.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'jwtService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/JwtService.class]: Unsatisfied dependency expressed through constructor parameter 2: Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "${jwt.refresh-expiration"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.hdfclife.backend.BackendApplication.main(BackendApplication.java:10)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/AuthService.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'jwtService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/JwtService.class]: Unsatisfied dependency expressed through constructor parameter 2: Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "${jwt.refresh-expiration"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtService' defined in file [/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes/org/hdfclife/backend/service/JwtService.class]: Unsatisfied dependency expressed through constructor parameter 2: Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "${jwt.refresh-expiration"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.TypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "${jwt.refresh-expiration"
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:82)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:67)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1686)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: java.lang.NumberFormatException: For input string: "${jwt.refresh-expiration"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Long.parseLong(Long.java:555)
+	at java.base/java.lang.Long.valueOf(Long.java:911)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:204)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:438)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:411)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:158)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:75)
+	... 54 common frames omitted
+2026-09-20 10:27:19.793 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2 with PID 7892 (/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes started by R.V1498 in /Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend)
+2026-09-20 10:27:19.795 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-20 10:27:19.795 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-20 10:27:20.010 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-20 10:27:20.028 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2026-09-20 10:27:20.175 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-20 10:27:20.179 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-20 10:27:20.180 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-20 10:27:20.180 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-20 10:27:20.193 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 381 ms
+2026-09-20 10:27:20.206 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-20 10:27:20.253 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-20 10:27:20.270 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-20 10:27:20.395 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-20 10:27:20.404 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-20 10:27:23.695 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26c6288d
+2026-09-20 10:27:23.696 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-20 10:27:25.356 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-20 10:27:25.669 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-20 10:27:26.739 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 10:27:26.816 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-20 10:27:26.878 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-20 10:27:26.904 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 73a4be6f-edcd-499c-8109-07cad828f505
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-20 10:27:26.906 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-20 10:27:27.025 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-20 10:27:27.029 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-20 10:27:27.031 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 7.392 seconds (process running for 7.526)
+2026-09-20 10:27:31.749 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-20 10:27:31.749 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-20 10:27:31.750 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-20 10:27:31.759 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-20 10:27:31.823 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/mock/external-login
+2026-09-20 10:27:32.622 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/mock/external-login, status=200, duration=799ms
+2026-09-20 10:27:32.657 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=898ms
+2026-09-20 10:46:24.814 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-20 10:46:25.821 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-20 10:46:25.829 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 10:46:25.832 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-20 10:46:29.482 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-20 10:46:30.872 INFO  [main] o.h.backend.BackendApplication - Starting BackendApplication using Java 26.0.2 with PID 8548 (/Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend/target/classes started by R.V1498 in /Users/R.V1498/Documents/GETProg/CAPSTONE/secure-auth/Backend)
+2026-09-20 10:46:30.873 DEBUG [main] o.h.backend.BackendApplication - Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-20 10:46:30.873 INFO  [main] o.h.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-20 10:46:31.084 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-20 10:46:31.102 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+2026-09-20 10:46:31.249 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-20 10:46:31.253 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-20 10:46:31.253 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-20 10:46:31.253 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-20 10:46:31.267 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 379 ms
+2026-09-20 10:46:31.281 DEBUG [main] o.h.b.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-09-20 10:46:31.322 INFO  [main] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-20 10:46:31.342 INFO  [main] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-20 10:46:31.457 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-20 10:46:31.466 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-20 10:46:35.026 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26c6288d
+2026-09-20 10:46:35.028 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-20 10:46:36.871 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://auth-db.ci36u0yu444y.us-east-1.rds.amazonaws.com:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-20 10:46:37.167 INFO  [main] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-20 10:46:38.118 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 10:46:38.196 INFO  [main] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-20 10:46:38.256 WARN  [main] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-20 10:46:38.280 WARN  [main] o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 6747a95b-54b4-417e-8c06-a123efc5ee72
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-09-20 10:46:38.282 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-20 10:46:38.391 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-20 10:46:38.394 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-20 10:46:38.396 INFO  [main] o.h.backend.BackendApplication - Started BackendApplication in 7.671 seconds (process running for 7.816)
+2026-09-20 10:50:38.494 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-20 10:50:38.495 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-20 10:50:38.497 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-09-20 10:50:38.512 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-20 10:50:38.581 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/mock/external-login
+2026-09-20 10:50:39.469 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/mock/external-login, status=200, duration=888ms
+2026-09-20 10:50:39.501 INFO  [http-nio-8080-exec-1] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=989ms
+2026-09-20 10:51:09.966 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-20 10:51:10.010 INFO  [http-nio-8080-exec-4] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=44ms
+2026-09-20 10:52:30.452 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/refresh
+2026-09-20 10:52:30.462 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/refresh, status=401, duration=10ms
+2026-09-20 10:52:33.713 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/refresh
+2026-09-20 10:52:33.715 INFO  [http-nio-8080-exec-7] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/refresh, status=401, duration=2ms
+2026-09-20 10:52:34.609 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/refresh
+2026-09-20 10:52:34.613 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/refresh, status=401, duration=4ms
+2026-09-20 10:52:50.611 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/refresh
+2026-09-20 10:52:50.618 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/refresh, status=200, duration=7ms
+2026-09-20 10:53:13.683 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-20 10:53:13.687 INFO  [http-nio-8080-exec-10] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=4ms
+2026-09-20 10:53:33.771 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=GET, uri=/auth
+2026-09-20 10:53:33.776 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=GET, uri=/auth, status=200, duration=5ms
+2026-09-20 10:56:29.880 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/refresh
+2026-09-20 10:56:29.884 INFO  [http-nio-8080-exec-3] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/refresh, status=401, duration=4ms
