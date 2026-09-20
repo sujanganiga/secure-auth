@@ -2,49 +2,38 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-
 import {
     Eye,
     EyeOff,
     Mail,
     LockKeyhole,
+    ArrowRight,
 } from "lucide-react";
 
 import { registerSchema } from "@/schemas/authSchema";
 import { register } from "@/services/authService";
-
 import PublicRoute from "@/components/PublicRoute";
 
 export default function RegisterPage() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] =
-        React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
 
-    const [showPassword, setShowPassword] =
-        React.useState(false);
-
+    const [showPassword, setShowPassword] = React.useState(false);
     const [showConfirmPassword, setShowConfirmPassword] =
         React.useState(false);
 
-    const [isLoading, setIsLoading] =
-        React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
-    const [emailError, setEmailError] =
-        React.useState("");
-
-    const [passwordError, setPasswordError] =
-        React.useState("");
-
+    const [emailError, setEmailError] = React.useState("");
+    const [passwordError, setPasswordError] = React.useState("");
     const [confirmPasswordError, setConfirmPasswordError] =
         React.useState("");
 
-    const [registerError, setRegisterError] =
-        React.useState("");
-
-    const [successMessage, setSuccessMessage] =
-        React.useState("");
+    const [registerError, setRegisterError] = React.useState("");
+    const [successMessage, setSuccessMessage] = React.useState("");
 
     const router = useRouter();
 
@@ -53,42 +42,32 @@ export default function RegisterPage() {
     ) => {
         e.preventDefault();
 
-        // Clear previous messages
         setEmailError("");
         setPasswordError("");
         setConfirmPasswordError("");
         setRegisterError("");
         setSuccessMessage("");
 
-        // Zod validation
-        const validationResult =
-            registerSchema.safeParse({
-                email,
-                password,
-                confirmPassword,
-            });
+        const validationResult = registerSchema.safeParse({
+            email,
+            password,
+            confirmPassword,
+        });
 
         if (!validationResult.success) {
-            validationResult.error.issues.forEach(
-                (issue) => {
-                    if (issue.path[0] === "email") {
-                        setEmailError(issue.message);
-                    }
-
-                    if (issue.path[0] === "password") {
-                        setPasswordError(issue.message);
-                    }
-
-                    if (
-                        issue.path[0] ===
-                        "confirmPassword"
-                    ) {
-                        setConfirmPasswordError(
-                            issue.message
-                        );
-                    }
+            validationResult.error.issues.forEach((issue) => {
+                if (issue.path[0] === "email") {
+                    setEmailError(issue.message);
                 }
-            );
+
+                if (issue.path[0] === "password") {
+                    setPasswordError(issue.message);
+                }
+
+                if (issue.path[0] === "confirmPassword") {
+                    setConfirmPasswordError(issue.message);
+                }
+            });
 
             return;
         }
@@ -96,33 +75,19 @@ export default function RegisterPage() {
         try {
             setIsLoading(true);
 
-            // Backend expects username + password
-            const response = await register(
-                email,
-                password
-            );
+            const response = await register(email, password);
 
-            console.log(
-                "Registration successful:",
-                response
-            );
+            console.log("Registration successful:", response);
 
-            // Use backend response message
             setSuccessMessage(
-                response?.message ||
-                    "Registration successful."
+                response?.message || "Registration successful."
             );
 
-            // Redirect to login
             setTimeout(() => {
                 router.push("/login");
             }, 1500);
-
         } catch (error: unknown) {
-            console.error(
-                "Registration error:",
-                error
-            );
+            console.error("Registration error:", error);
 
             let message =
                 "Registration failed. Please try again.";
@@ -143,13 +108,10 @@ export default function RegisterPage() {
                     }
                 ).response;
 
-                // Backend error message
                 if (response?.data?.message) {
-                    message =
-                        response.data.message;
+                    message = response.data.message;
                 }
 
-                // Duplicate account
                 if (response?.status === 409) {
                     message =
                         "An account with this email already exists.";
@@ -157,7 +119,6 @@ export default function RegisterPage() {
             }
 
             setRegisterError(message);
-
         } finally {
             setIsLoading(false);
         }
@@ -165,45 +126,41 @@ export default function RegisterPage() {
 
     return (
         <PublicRoute>
-            <main className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-10">
-
+            <main className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-8 sm:py-10">
                 <div className="w-full max-w-md">
 
-                    {/* HDFC Life */}
-                    {/* <div className="text-center mb-6">
-                        <div className="flex items-center justify-center gap-3">
+                    {/* Register Card */}
+                    <div className="bg-white rounded-2xl shadow-lg border border-slate-200 px-5 py-7 sm:px-9 sm:py-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl">
 
-                            <div className="w-11 h-11 rounded-lg bg-[#d71920] flex items-center justify-center">
-                                <div className="w-6 h-6 rounded-full border-4 border-white" />
+                        {/* HDFC Life Logo */}
+                        <div className="mb-2">
+                            <div className="flex justify-center mb-0">
+                                <Image
+                                    src="/images/HDFC_LOGO.jpeg"
+                                    alt="HDFC Life"
+                                    width={340}
+                                    height={130}
+                                    priority
+                                    className="h-28 sm:h-32 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                                />
                             </div>
 
-                            <h1 className="text-2xl font-bold text-[#0b1f3a]">
-                                HDFC Life
-                            </h1>
+                            {/* Heading */}
+                            <div className="text-center">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-[#0b1f3a]">
+                                    Create account
+                                </h2>
 
-                        </div>
-                    </div> */}
-
-                    {/* Register Card */}
-                    <div className="bg-white rounded-2xl shadow-lg border border-slate-200 px-7 py-8 sm:px-9">
-
-                        {/* Heading */}
-                        <div className="text-center mb-7">
-
-                            <h2 className="text-2xl font-bold text-[#0b1f3a]">
-                                Create account
-                            </h2>
-
-                            <p className="mt-2 text-sm text-slate-500">
-                                Create your account to access the portal
-                            </p>
-
+                                <p className="mt-2 text-sm text-slate-500">
+                                    Create your account to access the portal
+                                </p>
+                            </div>
                         </div>
 
-                        {/* Backend error */}
+                        {/* Backend Error */}
                         {registerError && (
                             <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
-                                <p className="text-sm text-red-600">
+                                <p className="text-sm leading-5 text-red-600">
                                     {registerError}
                                 </p>
                             </div>
@@ -231,7 +188,6 @@ export default function RegisterPage() {
 
                             {/* Email */}
                             <div>
-
                                 <label
                                     htmlFor="email"
                                     className="block text-sm font-medium text-slate-700 mb-2"
@@ -239,11 +195,10 @@ export default function RegisterPage() {
                                     Email address
                                 </label>
 
-                                <div className="relative">
-
+                                <div className="relative group">
                                     <Mail
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920]"
                                     />
 
                                     <input
@@ -251,20 +206,22 @@ export default function RegisterPage() {
                                         id="email"
                                         placeholder="Enter your email"
                                         value={email}
+                                        disabled={isLoading}
                                         onChange={(e) => {
-                                            setEmail(
-                                                e.target.value
-                                            );
+                                            setEmail(e.target.value);
                                             setEmailError("");
                                             setRegisterError("");
                                         }}
-                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-4 text-sm text-slate-900 outline-none transition ${
+                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-4 text-sm text-slate-900 outline-none transition-all duration-200 ${
                                             emailError
                                                 ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                                                : "border-slate-300 focus:border-[#d71920] focus:ring-2 focus:ring-red-100"
+                                                : "border-slate-300 hover:border-slate-400 hover:shadow-sm focus:border-[#d71920] focus:ring-2 focus:ring-red-100 focus:shadow-md"
+                                        } ${
+                                            isLoading
+                                                ? "cursor-not-allowed bg-slate-100 text-slate-400"
+                                                : ""
                                         }`}
                                     />
-
                                 </div>
 
                                 {emailError && (
@@ -272,12 +229,10 @@ export default function RegisterPage() {
                                         {emailError}
                                     </p>
                                 )}
-
                             </div>
 
                             {/* Password */}
                             <div>
-
                                 <label
                                     htmlFor="password"
                                     className="block text-sm font-medium text-slate-700 mb-2"
@@ -285,11 +240,10 @@ export default function RegisterPage() {
                                     Password
                                 </label>
 
-                                <div className="relative">
-
+                                <div className="relative group">
                                     <LockKeyhole
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
                                     />
 
                                     <input
@@ -301,36 +255,42 @@ export default function RegisterPage() {
                                         id="password"
                                         placeholder="Enter your password"
                                         value={password}
+                                        disabled={isLoading}
                                         onChange={(e) => {
-                                            setPassword(
-                                                e.target.value
-                                            );
+                                            setPassword(e.target.value);
                                             setPasswordError("");
                                             setRegisterError("");
                                         }}
-                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition ${
+                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition-all duration-200 ${
                                             passwordError
                                                 ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                                                : "border-slate-300 focus:border-[#d71920] focus:ring-2 focus:ring-red-100"
+                                                : "border-slate-300 hover:border-slate-400 hover:shadow-sm focus:border-[#d71920] focus:ring-2 focus:ring-red-100 focus:shadow-md"
+                                        } ${
+                                            isLoading
+                                                ? "cursor-not-allowed bg-slate-100 text-slate-400"
+                                                : ""
                                         }`}
                                     />
 
                                     <button
                                         type="button"
+                                        disabled={isLoading}
                                         onClick={() =>
-                                            setShowPassword(
-                                                !showPassword
-                                            )
+                                            setShowPassword(!showPassword)
                                         }
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-500 hover:text-slate-800"
+                                        className="absolute right-2.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:text-slate-300"
+                                        aria-label={
+                                            showPassword
+                                                ? "Hide password"
+                                                : "Show password"
+                                        }
                                     >
                                         {showPassword ? (
-                                            <EyeOff size={19} />
+                                            <EyeOff size={18} />
                                         ) : (
-                                            <Eye size={19} />
+                                            <Eye size={18} />
                                         )}
                                     </button>
-
                                 </div>
 
                                 {passwordError && (
@@ -338,12 +298,10 @@ export default function RegisterPage() {
                                         {passwordError}
                                     </p>
                                 )}
-
                             </div>
 
                             {/* Confirm Password */}
                             <div>
-
                                 <label
                                     htmlFor="confirmPassword"
                                     className="block text-sm font-medium text-slate-700 mb-2"
@@ -351,11 +309,10 @@ export default function RegisterPage() {
                                     Confirm password
                                 </label>
 
-                                <div className="relative">
-
+                                <div className="relative group">
                                     <LockKeyhole
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
                                     />
 
                                     <input
@@ -367,6 +324,7 @@ export default function RegisterPage() {
                                         id="confirmPassword"
                                         placeholder="Re-enter your password"
                                         value={confirmPassword}
+                                        disabled={isLoading}
                                         onChange={(e) => {
                                             setConfirmPassword(
                                                 e.target.value
@@ -374,29 +332,38 @@ export default function RegisterPage() {
                                             setConfirmPasswordError("");
                                             setRegisterError("");
                                         }}
-                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition ${
+                                        className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition-all duration-200 ${
                                             confirmPasswordError
                                                 ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                                                : "border-slate-300 focus:border-[#d71920] focus:ring-2 focus:ring-red-100"
+                                                : "border-slate-300 hover:border-slate-400 hover:shadow-sm focus:border-[#d71920] focus:ring-2 focus:ring-red-100 focus:shadow-md"
+                                        } ${
+                                            isLoading
+                                                ? "cursor-not-allowed bg-slate-100 text-slate-400"
+                                                : ""
                                         }`}
                                     />
 
                                     <button
                                         type="button"
+                                        disabled={isLoading}
                                         onClick={() =>
                                             setShowConfirmPassword(
                                                 !showConfirmPassword
                                             )
                                         }
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-500 hover:text-slate-800"
+                                        className="absolute right-2.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:text-slate-300"
+                                        aria-label={
+                                            showConfirmPassword
+                                                ? "Hide confirm password"
+                                                : "Show confirm password"
+                                        }
                                     >
                                         {showConfirmPassword ? (
-                                            <EyeOff size={19} />
+                                            <EyeOff size={18} />
                                         ) : (
-                                            <Eye size={19} />
+                                            <Eye size={18} />
                                         )}
                                     </button>
-
                                 </div>
 
                                 {confirmPasswordError && (
@@ -404,42 +371,53 @@ export default function RegisterPage() {
                                         {confirmPasswordError}
                                     </p>
                                 )}
-
                             </div>
 
-                            {/* Create Account */}
+                            {/* Create Account Button */}
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full rounded-lg bg-[#d71920] py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-red-300"
+                                className={`group w-full rounded-lg py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 ${
+                                    isLoading
+                                        ? "cursor-not-allowed bg-red-300"
+                                        : "bg-[#d71920] hover:bg-red-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
+                                }`}
                             >
-                                {isLoading
-                                    ? "Creating account..."
-                                    : "Create account"}
-                            </button>
+                                <span className="inline-flex items-center justify-center gap-2">
+                                    {isLoading
+                                        ? "Creating account..."
+                                        : "Create account"}
 
+                                    {!isLoading && (
+                                        <ArrowRight
+                                            size={17}
+                                            className="transition-transform duration-200 group-hover:translate-x-1"
+                                        />
+                                    )}
+                                </span>
+                            </button>
                         </form>
 
-                        {/* Login */}
+                        {/* Sign In */}
                         <div className="mt-7 pt-6 border-t border-slate-200 text-center">
-
                             <p className="text-sm text-slate-500">
                                 Already have an account?
                             </p>
 
                             <Link
                                 href="/login"
-                                className="inline-block mt-2 text-sm font-semibold text-[#0b1f3a] hover:text-[#d71920] hover:underline"
+                                className="group inline-flex items-center gap-1 mt-2 text-sm font-semibold text-[#0b1f3a] transition-all duration-200 hover:text-[#d71920]"
                             >
                                 Sign in
+                                <ArrowRight
+                                    size={16}
+                                    className="transition-transform duration-200 group-hover:translate-x-1"
+                                />
                             </Link>
-
                         </div>
 
                     </div>
-
                 </div>
-
             </main>
         </PublicRoute>
     );
