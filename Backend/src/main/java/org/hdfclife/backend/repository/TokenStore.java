@@ -1,4 +1,4 @@
-package org.hdfclife.backend.service;
+package org.hdfclife.backend.repository;
 
 import org.springframework.stereotype.Component;
 

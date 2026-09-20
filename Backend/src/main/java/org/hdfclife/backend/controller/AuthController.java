@@ -2,11 +2,15 @@ package org.hdfclife.backend.controller;
 
 import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
+import org.hdfclife.backend.dto.RefreshRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
 import org.hdfclife.backend.entity.User;
+import org.hdfclife.backend.exception.InvalidAuthorizationException;
 import org.hdfclife.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.hdfclife.backend.resilience.LoginRateLimiterService;
 
 import java.util.Map;
 
@@ -15,9 +19,11 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
-    public AuthController(AuthService authService)
+    private final LoginRateLimiterService loginRateLimiterService;
+    public AuthController(AuthService authService, LoginRateLimiterService loginRateLimiterService)
     {
         this.authService=authService;
+        this.loginRateLimiterService = loginRateLimiterService;
     }
 
     @PostMapping("/register")
@@ -30,10 +36,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest)
-    {
-        AuthResponse response=authService.login(loginRequest);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+
+        String username = loginRequest.getUsername();
+        String ipAddress = request.getRemoteAddr();
+
+        loginRateLimiterService.checkLoginAttempt(username,ipAddress);
+
+        return ResponseEntity.ok(authService.login(loginRequest));
     }
 
     @GetMapping("/auth")
@@ -59,24 +69,27 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization",required = false) String authorization)
+    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization",required = false) String authorization,@RequestHeader(value = "Refresh-Token",required = false) String refreshToken)
     {
         if (authorization == null ||
                 !authorization.startsWith("Bearer ")) {
 
-            return ResponseEntity
-                    .status(401)
-                    .body(
-                            Map.of(
-                                    "message",
-                                    "Bearer token is required"
-                            )
-                    );
+            throw new InvalidAuthorizationException(
+                    "Bearer token is required"
+            );
         }
+
+        if (refreshToken == null || refreshToken.isBlank()) {
+
+            throw new InvalidAuthorizationException(
+                    "Refresh token is required"
+            );
+        }
+
 
         String token = authorization.substring(7);
 
-        authService.logout(token);
+        authService.logout(token,refreshToken);
 
         return ResponseEntity.ok(
             Map.of(
@@ -84,6 +97,12 @@ public class AuthController {
                     "Logout successful"
             )
     );
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest)
+    {
+        return ResponseEntity.ok(authService.refreshToken(refreshRequest.getRefreshToken()));
     }
 
 }
