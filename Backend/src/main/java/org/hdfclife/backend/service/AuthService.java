@@ -101,6 +101,14 @@ public class AuthService {
             );
         }
 
+        if (!jwtService.validateToken(token)) {
+            tokenStore.removeToken(token);
+
+            throw new InvalidTokenException(
+                    "Access token expired or invalid"
+            );
+        }
+
         if (!refreshTokenStore.containsToken(refreshToken)) {
 
             throw new InvalidTokenException(
@@ -108,6 +116,29 @@ public class AuthService {
             );
         }
 
+
+        if (!jwtService.validateToken(refreshToken)) {
+            refreshTokenStore.removeToken(refreshToken);
+
+            throw new InvalidTokenException(
+                    "Refresh token expired or invalid"
+            );
+        }
+
+        if (!jwtService.isRefreshToken(refreshToken)) {
+            throw new InvalidTokenException(
+                    "Invalid refresh token"
+            );
+        }
+
+        String accessUsername = jwtService.extractUsername(token);
+        String refreshUsername = jwtService.extractUsername(refreshToken);
+
+        if (!accessUsername.equals(refreshUsername)) {
+            throw new InvalidTokenException(
+                    "Access token and refresh token do not belong to the same user"
+            );
+        }
 
         tokenStore.removeToken(token);
         refreshTokenStore.removeToken(refreshToken);
