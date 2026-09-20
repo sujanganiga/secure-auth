@@ -84,7 +84,7 @@ public class AuthService {
         {
             tokenStore.removeToken(token);
 
-            throw new RuntimeException(
+            throw new InvalidTokenException(
                     "Token expired or invalid"
             );
         }

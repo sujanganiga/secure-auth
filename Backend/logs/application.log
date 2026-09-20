@@ -773,3 +773,14 @@ This generated password is for development use only. Your security configuration
 2026-09-20 13:03:52.684 INFO  [http-nio-8080-exec-5] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=401, duration=3ms
 2026-09-20 13:05:23.679 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/logout
 2026-09-20 13:05:23.682 INFO  [http-nio-8080-exec-6] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=200, duration=3ms
+2026-09-20 13:07:54.920 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/login
+2026-09-20 13:07:54.936 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/mock/external-login
+2026-09-20 13:07:55.672 INFO  [http-nio-8080-exec-9] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/mock/external-login, status=200, duration=736ms
+2026-09-20 13:07:55.674 INFO  [http-nio-8080-exec-8] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/login, status=200, duration=754ms
+2026-09-20 13:08:35.542 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Incoming Request: method=POST, uri=/logout
+2026-09-20 13:08:35.545 INFO  [http-nio-8080-exec-2] o.h.b.logging.RequestLoggingFilter - Outgoing Response: method=POST, uri=/logout, status=200, duration=3ms
+2026-09-20 13:08:55.980 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-20 13:08:56.989 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-20 13:08:56.998 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-20 13:08:57.001 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-20 13:08:59.954 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
