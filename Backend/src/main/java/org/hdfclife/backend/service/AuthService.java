@@ -92,7 +92,7 @@ public class AuthService {
         return jwtService.extractUsername(token);
     }
 
-    public void logout(String token)
+    public void logout(String token,String refreshToken)
     {
         if(!tokenStore.containsToken(token))
         {
@@ -101,7 +101,16 @@ public class AuthService {
             );
         }
 
+        if (!refreshTokenStore.containsToken(refreshToken)) {
+
+            throw new InvalidTokenException(
+                    "Invalid or already logged out refresh token"
+            );
+        }
+
+
         tokenStore.removeToken(token);
+        refreshTokenStore.removeToken(refreshToken);
     }
 
     public AuthResponse refreshToken(String refreshToken)
