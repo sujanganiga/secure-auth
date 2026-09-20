@@ -69,7 +69,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization",required = false) String authorization)
+    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization",required = false) String authorization,@RequestHeader(value = "Refresh-Token",required = false) String refreshToken)
     {
         if (authorization == null ||
                 !authorization.startsWith("Bearer ")) {
@@ -79,9 +79,17 @@ public class AuthController {
             );
         }
 
+        if (refreshToken == null || refreshToken.isBlank()) {
+
+            throw new InvalidAuthorizationException(
+                    "Refresh token is required"
+            );
+        }
+
+
         String token = authorization.substring(7);
 
-        authService.logout(token);
+        authService.logout(token,refreshToken);
 
         return ResponseEntity.ok(
             Map.of(

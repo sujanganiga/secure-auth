@@ -96,6 +96,7 @@ class AuthControllerTest {
         AuthResponse authResponse =
                 new AuthResponse(
                         "test-jwt-token",
+                        "test-refresh-token",
                         "testuser",
                         "Login Successful"
                 );
@@ -234,18 +235,22 @@ class AuthControllerTest {
 
         doNothing()
                 .when(authService)
-                .logout("valid-token");
+                .logout("valid-token","valid-refresh-token");
 
         mockMvc.perform(
                         post("/logout")
                                 .header("Authorization", "Bearer valid-token")
+                                .header(
+                                        "X-Refresh-Token",
+                                        "valid-refresh-token"
+                                )
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message")
                         .value("Logout successful"));
 
         verify(authService)
-                .logout("valid-token");
+                .logout("valid-token","valid-refresh-token");
     }
 
     @Test
