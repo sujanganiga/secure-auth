@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
+
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 import {
     Eye,
     EyeOff,
@@ -62,6 +64,20 @@ export default function RegisterPage() {
         };
     }, []);
 
+    /*
+     * Live password requirement checks
+     */
+    const hasMinLength = password.length >= 8;
+
+    const hasUppercase = /[A-Z]/.test(password);
+
+    const hasLowercase = /[a-z]/.test(password);
+
+    const hasNumber = /[0-9]/.test(password);
+
+    const hasSpecialCharacter =
+        /[^A-Za-z0-9]/.test(password);
+
     const handleSubmit = async (
         e: React.SubmitEvent<HTMLFormElement>
     ) => {
@@ -90,11 +106,15 @@ export default function RegisterPage() {
             validationResult.error.issues.forEach(
                 (issue) => {
                     if (issue.path[0] === "email") {
-                        setEmailError(issue.message);
+                        setEmailError(
+                            issue.message
+                        );
                     }
 
                     if (issue.path[0] === "password") {
-                        setPasswordError(issue.message);
+                        setPasswordError(
+                            issue.message
+                        );
                     }
 
                     if (
@@ -406,9 +426,13 @@ export default function RegisterPage() {
                                         }
                                     >
                                         {showPassword ? (
-                                            <EyeOff size={18} />
+                                            <EyeOff
+                                                size={18}
+                                            />
                                         ) : (
-                                            <Eye size={18} />
+                                            <Eye
+                                                size={18}
+                                            />
                                         )}
                                     </button>
                                 </div>
@@ -487,9 +511,13 @@ export default function RegisterPage() {
                                         }
                                     >
                                         {showConfirmPassword ? (
-                                            <EyeOff size={18} />
+                                            <EyeOff
+                                                size={18}
+                                            />
                                         ) : (
-                                            <Eye size={18} />
+                                            <Eye
+                                                size={18}
+                                            />
                                         )}
                                     </button>
                                 </div>
@@ -503,6 +531,75 @@ export default function RegisterPage() {
                                 )}
                             </div>
 
+                            {/* Password Requirements */}
+                            <div className="rounded-md bg-slate-50 border border-slate-200 px-3 py-2">
+                                <p className="text-[10px] font-medium text-slate-600 mb-1">
+                                    Password must contain:
+                                </p>
+
+                                <p className="text-[9px] leading-4">
+
+                                    <span
+                                        className={
+                                            hasMinLength
+                                                ? "text-green-600"
+                                                : "text-slate-400"
+                                        }
+                                    >
+                                        8+ characters
+                                    </span>
+
+                                    {" • "}
+
+                                    <span
+                                        className={
+                                            hasUppercase
+                                                ? "text-green-600"
+                                                : "text-slate-400"
+                                        }
+                                    >
+                                        Uppercase
+                                    </span>
+
+                                    {" • "}
+
+                                    <span
+                                        className={
+                                            hasLowercase
+                                                ? "text-green-600"
+                                                : "text-slate-400"
+                                        }
+                                    >
+                                        Lowercase
+                                    </span>
+
+                                    {" • "}
+
+                                    <span
+                                        className={
+                                            hasNumber
+                                                ? "text-green-600"
+                                                : "text-slate-400"
+                                        }
+                                    >
+                                        Number
+                                    </span>
+
+                                    {" • "}
+
+                                    <span
+                                        className={
+                                            hasSpecialCharacter
+                                                ? "text-green-600"
+                                                : "text-slate-400"
+                                        }
+                                    >
+                                        Special character
+                                    </span>
+
+                                </p>
+                            </div>
+
                             {/* Create Account Button */}
                             <button
                                 type="submit"
@@ -514,6 +611,7 @@ export default function RegisterPage() {
                                 }`}
                             >
                                 <span className="inline-flex items-center justify-center gap-2">
+
                                     {isLoading
                                         ? "Creating account..."
                                         : "Create account"}
@@ -524,8 +622,10 @@ export default function RegisterPage() {
                                             className="transition-transform duration-200 group-hover:translate-x-1"
                                         />
                                     )}
+
                                 </span>
                             </button>
+
                         </form>
 
                         {/* Sign In */}
