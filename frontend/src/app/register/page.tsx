@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -19,55 +20,93 @@ import PublicRoute from "@/components/PublicRoute";
 export default function RegisterPage() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] =
+        React.useState("");
 
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] =
+        React.useState(false);
+
     const [showConfirmPassword, setShowConfirmPassword] =
         React.useState(false);
 
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading, setIsLoading] =
+        React.useState(false);
 
-    const [emailError, setEmailError] = React.useState("");
-    const [passwordError, setPasswordError] = React.useState("");
+    const [emailError, setEmailError] =
+        React.useState("");
+
+    const [passwordError, setPasswordError] =
+        React.useState("");
+
     const [confirmPasswordError, setConfirmPasswordError] =
         React.useState("");
 
-    const [registerError, setRegisterError] = React.useState("");
-    const [successMessage, setSuccessMessage] = React.useState("");
+    const [registerError, setRegisterError] =
+        React.useState("");
+
+    const [successMessage, setSuccessMessage] =
+        React.useState("");
+
+    const redirectTimerRef =
+        React.useRef<ReturnType<typeof setTimeout> | null>(
+            null
+        );
 
     const router = useRouter();
+
+    React.useEffect(() => {
+        return () => {
+            if (redirectTimerRef.current) {
+                clearTimeout(redirectTimerRef.current);
+            }
+        };
+    }, []);
 
     const handleSubmit = async (
         e: React.SubmitEvent<HTMLFormElement>
     ) => {
         e.preventDefault();
 
+        // Prevent duplicate registration requests
+        if (isLoading) {
+            return;
+        }
+
+        // Clear previous messages
         setEmailError("");
         setPasswordError("");
         setConfirmPasswordError("");
         setRegisterError("");
         setSuccessMessage("");
 
-        const validationResult = registerSchema.safeParse({
-            email,
-            password,
-            confirmPassword,
-        });
+        const validationResult =
+            registerSchema.safeParse({
+                email,
+                password,
+                confirmPassword,
+            });
 
         if (!validationResult.success) {
-            validationResult.error.issues.forEach((issue) => {
-                if (issue.path[0] === "email") {
-                    setEmailError(issue.message);
-                }
+            validationResult.error.issues.forEach(
+                (issue) => {
+                    if (issue.path[0] === "email") {
+                        setEmailError(issue.message);
+                    }
 
-                if (issue.path[0] === "password") {
-                    setPasswordError(issue.message);
-                }
+                    if (issue.path[0] === "password") {
+                        setPasswordError(issue.message);
+                    }
 
-                if (issue.path[0] === "confirmPassword") {
-                    setConfirmPasswordError(issue.message);
+                    if (
+                        issue.path[0] ===
+                        "confirmPassword"
+                    ) {
+                        setConfirmPasswordError(
+                            issue.message
+                        );
+                    }
                 }
-            });
+            );
 
             return;
         }
@@ -75,47 +114,108 @@ export default function RegisterPage() {
         try {
             setIsLoading(true);
 
-            const response = await register(email, password);
-
-            console.log("Registration successful:", response);
-
-            setSuccessMessage(
-                response?.message || "Registration successful."
+            const response = await register(
+                email,
+                password
             );
 
-            setTimeout(() => {
-                router.push("/login");
-            }, 1500);
-        } catch (error: unknown) {
-            console.error("Registration error:", error);
+            console.log(
+                "Registration successful:",
+                response
+            );
 
+            setSuccessMessage(
+                response?.message ||
+                    "Registration successful."
+            );
+
+            redirectTimerRef.current =
+                setTimeout(() => {
+                    router.push("/login");
+                }, 1500);
+        } catch (error: unknown) {
             let message =
                 "Registration failed. Please try again.";
 
-            if (
-                typeof error === "object" &&
-                error !== null &&
-                "response" in error
-            ) {
-                const response = (
-                    error as {
-                        response?: {
-                            status?: number;
-                            data?: {
-                                message?: string;
-                            };
-                        };
-                    }
-                ).response;
+            if (axios.isAxiosError(error)) {
+                const status =
+                    error.response?.status;
 
-                if (response?.data?.message) {
-                    message = response.data.message;
+                const backendMessage =
+                    error.response?.data?.message;
+
+                /*
+                 * 400 - Bad request
+                 */
+                if (status === 400) {
+                    message =
+                        backendMessage ||
+                        "Please check the information you entered and try again.";
                 }
 
-                if (response?.status === 409) {
+                /*
+                 * 401 - Unauthorized
+                 */
+                else if (status === 401) {
                     message =
+                        backendMessage ||
+                        "Registration could not be completed. Please try again.";
+                }
+
+                /*
+                 * 409 - Username/email already exists
+                 */
+                else if (status === 409) {
+                    message =
+                        backendMessage ||
                         "An account with this email already exists.";
                 }
+
+                /*
+                 * 429 - Too many requests
+                 */
+                else if (status === 429) {
+                    message =
+                        backendMessage ||
+                        "Too many registration attempts. Please try again later.";
+                }
+
+                /*
+                 * 500 - Internal server error
+                 */
+                else if (status === 500) {
+                    message =
+                        "Something went wrong on the server. Please try again later.";
+                }
+
+                /*
+                 * 503 - Service unavailable
+                 */
+                else if (status === 503) {
+                    message =
+                        backendMessage ||
+                        "Registration service is temporarily unavailable. Please try again shortly.";
+                }
+
+                /*
+                 * No response - network/server unavailable
+                 */
+                else if (!error.response) {
+                    message =
+                        "Unable to connect to the registration service. Please check your connection and try again.";
+                }
+
+                /*
+                 * Other HTTP errors
+                 */
+                else if (backendMessage) {
+                    message = backendMessage;
+                }
+            } else {
+                console.error(
+                    "Unexpected registration error:",
+                    error
+                );
             }
 
             setRegisterError(message);
@@ -130,7 +230,13 @@ export default function RegisterPage() {
                 <div className="w-full max-w-md">
 
                     {/* Register Card */}
-                    <div className="bg-white rounded-2xl shadow-lg border border-slate-200 px-5 py-7 sm:px-9 sm:py-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl">
+                    <div
+                        className={`bg-white rounded-2xl shadow-lg border border-slate-200 px-5 py-7 sm:px-9 sm:py-8 transition-all duration-300 ease-out ${
+                            isLoading
+                                ? "opacity-95"
+                                : "hover:-translate-y-1 hover:shadow-2xl"
+                        }`}
+                    >
 
                         {/* HDFC Life Logo */}
                         <div className="mb-2">
@@ -147,7 +253,7 @@ export default function RegisterPage() {
 
                             {/* Heading */}
                             <div className="text-center">
-                                <h2 className="text-2xl sm:text-3xl font-bold text-[#0b1f3a]">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-[#004C8C]">
                                     Create account
                                 </h2>
 
@@ -198,7 +304,11 @@ export default function RegisterPage() {
                                 <div className="relative group">
                                     <Mail
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920]"
+                                        className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                                            isLoading
+                                                ? "text-slate-300"
+                                                : "text-slate-400 group-hover:text-[#d71920] group-focus-within:text-[#d71920]"
+                                        }`}
                                     />
 
                                     <input
@@ -208,7 +318,9 @@ export default function RegisterPage() {
                                         value={email}
                                         disabled={isLoading}
                                         onChange={(e) => {
-                                            setEmail(e.target.value);
+                                            setEmail(
+                                                e.target.value
+                                            );
                                             setEmailError("");
                                             setRegisterError("");
                                         }}
@@ -243,7 +355,11 @@ export default function RegisterPage() {
                                 <div className="relative group">
                                     <LockKeyhole
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
+                                        className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                                            isLoading
+                                                ? "text-slate-300"
+                                                : "text-slate-400 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
+                                        }`}
                                     />
 
                                     <input
@@ -257,7 +373,9 @@ export default function RegisterPage() {
                                         value={password}
                                         disabled={isLoading}
                                         onChange={(e) => {
-                                            setPassword(e.target.value);
+                                            setPassword(
+                                                e.target.value
+                                            );
                                             setPasswordError("");
                                             setRegisterError("");
                                         }}
@@ -276,7 +394,9 @@ export default function RegisterPage() {
                                         type="button"
                                         disabled={isLoading}
                                         onClick={() =>
-                                            setShowPassword(!showPassword)
+                                            setShowPassword(
+                                                !showPassword
+                                            )
                                         }
                                         className="absolute right-2.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:text-slate-300"
                                         aria-label={
@@ -312,7 +432,11 @@ export default function RegisterPage() {
                                 <div className="relative group">
                                     <LockKeyhole
                                         size={19}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 transition-all duration-200 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
+                                        className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                                            isLoading
+                                                ? "text-slate-300"
+                                                : "text-slate-400 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
+                                        }`}
                                     />
 
                                     <input
@@ -323,13 +447,17 @@ export default function RegisterPage() {
                                         }
                                         id="confirmPassword"
                                         placeholder="Re-enter your password"
-                                        value={confirmPassword}
+                                        value={
+                                            confirmPassword
+                                        }
                                         disabled={isLoading}
                                         onChange={(e) => {
                                             setConfirmPassword(
                                                 e.target.value
                                             );
-                                            setConfirmPasswordError("");
+                                            setConfirmPasswordError(
+                                                ""
+                                            );
                                             setRegisterError("");
                                         }}
                                         className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition-all duration-200 ${
@@ -368,7 +496,9 @@ export default function RegisterPage() {
 
                                 {confirmPasswordError && (
                                     <p className="mt-2 text-sm text-red-500">
-                                        {confirmPasswordError}
+                                        {
+                                            confirmPasswordError
+                                        }
                                     </p>
                                 )}
                             </div>
@@ -409,6 +539,7 @@ export default function RegisterPage() {
                                 className="group inline-flex items-center gap-1 mt-2 text-sm font-semibold text-[#0b1f3a] transition-all duration-200 hover:text-[#d71920]"
                             >
                                 Sign in
+
                                 <ArrowRight
                                     size={16}
                                     className="transition-transform duration-200 group-hover:translate-x-1"

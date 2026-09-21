@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import {
     X,
     LayoutDashboard,
@@ -73,7 +74,7 @@ export default function Sidebar({
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">
 
-                    {/* Dashboard */}
+                    {/* Dashboard - WORKING */}
                     <Link
                         href="/dashboard"
                         onClick={onClose}
@@ -89,11 +90,11 @@ export default function Sidebar({
                         </span>
                     </Link>
 
-                    {/* Policies */}
-                    <Link
-                        href="/policies"
-                        onClick={onClose}
-                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
+                    {/* Policies - NOT IMPLEMENTED */}
+                    <button
+                        type="button"
+                        title="Coming soon"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 text-left transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
                         <FileText
                             size={20}
@@ -103,13 +104,13 @@ export default function Sidebar({
                         <span className="text-sm font-medium">
                             Policies
                         </span>
-                    </Link>
+                    </button>
 
-                    {/* Claims */}
-                    <Link
-                        href="/claims"
-                        onClick={onClose}
-                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
+                    {/* Claims - NOT IMPLEMENTED */}
+                    <button
+                        type="button"
+                        title="Coming soon"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 text-left transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
                         <ClipboardList
                             size={20}
@@ -119,13 +120,13 @@ export default function Sidebar({
                         <span className="text-sm font-medium">
                             Claims
                         </span>
-                    </Link>
+                    </button>
 
-                    {/* Reports */}
-                    <Link
-                        href="/reports"
-                        onClick={onClose}
-                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
+                    {/* Reports - NOT IMPLEMENTED */}
+                    <button
+                        type="button"
+                        title="Coming soon"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 text-left transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
                         <BarChart3
                             size={20}
@@ -135,13 +136,13 @@ export default function Sidebar({
                         <span className="text-sm font-medium">
                             Reports
                         </span>
-                    </Link>
+                    </button>
 
-                    {/* AI Insights */}
-                    <Link
-                        href="/ai-insights"
-                        onClick={onClose}
-                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
+                    {/* AI Insights - NOT IMPLEMENTED */}
+                    <button
+                        type="button"
+                        title="Coming soon"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 text-left transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
                         <Sparkles
                             size={20}
@@ -151,13 +152,13 @@ export default function Sidebar({
                         <span className="text-sm font-medium">
                             AI Insights
                         </span>
-                    </Link>
+                    </button>
 
-                    {/* Settings */}
-                    <Link
-                        href="/settings"
-                        onClick={onClose}
-                        className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
+                    {/* Settings - NOT IMPLEMENTED */}
+                    <button
+                        type="button"
+                        title="Coming soon"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 text-left transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:translate-x-1"
                     >
                         <Settings
                             size={20}
@@ -167,7 +168,7 @@ export default function Sidebar({
                         <span className="text-sm font-medium">
                             Settings
                         </span>
-                    </Link>
+                    </button>
 
                 </nav>
             </aside>
