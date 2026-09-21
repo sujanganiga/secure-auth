@@ -1,5 +1,3 @@
-// src/lib/axios.ts
-
 import axios from "axios";
 
 import { store } from "@/store/store";
@@ -8,23 +6,34 @@ import {
     restoreAuth,
 } from "@/store/authSlice";
 
-const api = axios.create({
-   // Replace with your backend API base URL
-//   baseURL: "http://192.168.254.90:8080",
-  baseURL: "http://localhost:8080",
 
-  //  // Replace with your backend API base URL
-  headers: {
-    "Content-Type": "application/json",
-  },
+const api = axios.create({
+    // Replace with your backend API base URL
+    // baseURL: "http://192.168.254.90:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
 
 api.interceptors.request.use(
     (config) => {
         const token = store.getState().auth.token;
 
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        /*
+         * These requests should NOT receive
+         * the access-token Authorization header.
+         */
+        const skipAccessToken =
+            config.url === "/login" ||
+            config.url === "/register" ||
+            config.url === "/refresh";
+
+        if (token && !skipAccessToken) {
+            config.headers.Authorization =
+                `Bearer ${token}`;
         }
 
         return config;
@@ -47,12 +56,18 @@ api.interceptors.response.use(
             return Promise.reject(error);
         }
 
-        // Do not try to refresh these requests
+        /*
+         * Do not try to refresh these requests.
+         *
+         * /auth is also excluded because
+         * AuthInitializer handles its 401 itself.
+         */
         if (
             originalRequest?.url === "/refresh" ||
             originalRequest?.url === "/login" ||
             originalRequest?.url === "/register" ||
-            originalRequest?.url === "/logout"
+            originalRequest?.url === "/logout" ||
+            originalRequest?.url === "/auth"
         ) {
             return Promise.reject(error);
         }
@@ -78,6 +93,11 @@ api.interceptors.response.use(
                     "Access token expired. Refreshing token..."
                 );
 
+                /*
+                 * /refresh does NOT receive the expired
+                 * access token because the request
+                 * interceptor excludes /refresh.
+                 */
                 const response = await api.post(
                     "/refresh",
                     {
@@ -85,9 +105,12 @@ api.interceptors.response.use(
                     }
                 );
 
-                const newToken = response.data.token;
+                const newToken =
+                    response.data.token;
+
                 const newRefreshToken =
                     response.data.refreshToken;
+
                 const username =
                     response.data.username;
 
@@ -99,28 +122,34 @@ api.interceptors.response.use(
                 store.dispatch(
                     restoreAuth({
                         token: newToken,
-                        refreshToken: newRefreshToken,
+                        refreshToken:
+                            newRefreshToken,
                         username,
                     })
                 );
 
                 // Update localStorage
-                localStorage.setItem(
-                    "token",
-                    newToken
-                );
+                if (typeof window !== "undefined") {
+                    localStorage.setItem(
+                        "token",
+                        newToken
+                    );
 
-                localStorage.setItem(
-                    "refreshToken",
-                    newRefreshToken
-                );
+                    localStorage.setItem(
+                        "refreshToken",
+                        newRefreshToken
+                    );
 
-                localStorage.setItem(
-                    "username",
-                    username
-                );
+                    localStorage.setItem(
+                        "username",
+                        username
+                    );
+                }
 
                 // Put new token on original request
+                originalRequest.headers =
+                    originalRequest.headers || {};
+
                 originalRequest.headers.Authorization =
                     `Bearer ${newToken}`;
 

@@ -6,95 +6,73 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import AnimatedBackground from "@/components/AnimatedBackground";
 
-import { Eye, EyeOff, Mail, LockKeyhole, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  LockKeyhole,
+  ArrowRight,
+} from "lucide-react";
 
 import { login } from "@/services/authService";
 import { loginSchema } from "@/schemas/authSchema";
 import PublicRoute from "@/components/PublicRoute";
 import { login as loginAction } from "@/store/authSlice";
 
-type BlockReason = "rateLimit" | "serviceUnavailable" | null;
-
 export default function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [showPassword, setShowPassword] =
+    React.useState(false);
 
-  const [emailError, setEmailError] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState("");
-  const [loginError, setLoginError] = React.useState("");
+  const [isLoading, setIsLoading] =
+    React.useState(false);
 
-  const [blockReason, setBlockReason] = React.useState<BlockReason>(null);
+  const [emailError, setEmailError] =
+    React.useState("");
 
-  const [retrySeconds, setRetrySeconds] = React.useState(0);
+  const [passwordError, setPasswordError] =
+    React.useState("");
+
+  const [loginError, setLoginError] =
+    React.useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  /*
-   * Countdown timer
-   */
-  React.useEffect(() => {
-    if (!blockReason || retrySeconds <= 0) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setRetrySeconds((seconds) => {
-        if (seconds <= 1) {
-          clearInterval(timer);
-          return 0;
-        }
-
-        return seconds - 1;
-      });
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, [blockReason, retrySeconds]);
-
-  React.useEffect(() => {
-    if (retrySeconds === 0 && blockReason) {
-      const timer = setTimeout(() => {
-        setBlockReason(null);
-      }, 0);
-
-      return () => clearTimeout(timer);
-    }
-  }, [retrySeconds, blockReason]);
-
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.SubmitEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
-    // Prevent submitting while blocked or loading
-    if (isLoading || blockReason) {
+    // Prevent submitting while loading
+    if (isLoading) {
       return;
     }
 
-    const validationResult = loginSchema.safeParse({
-      email,
-      password,
-    });
+    const validationResult =
+      loginSchema.safeParse({
+        email,
+        password,
+      });
 
     if (!validationResult.success) {
       setEmailError("");
       setPasswordError("");
 
-      validationResult.error.issues.forEach((issue) => {
-        if (issue.path[0] === "email") {
-          setEmailError(issue.message);
-        }
+      validationResult.error.issues.forEach(
+        (issue) => {
+          if (issue.path[0] === "email") {
+            setEmailError(issue.message);
+          }
 
-        if (issue.path[0] === "password") {
-          setPasswordError(issue.message);
+          if (issue.path[0] === "password") {
+            setPasswordError(issue.message);
+          }
         }
-      });
+      );
 
       return;
     }
@@ -106,16 +84,23 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
 
-      const response = await login(email, password);
+      const response = await login(
+        email,
+        password
+      );
 
-      console.log("Login successful:", response);
+      // console.log(
+      //   "Login successful:",
+      //   response
+      // );
 
       dispatch(
         loginAction({
           token: response.token,
-          refreshToken: response.refreshToken,
+          refreshToken:
+            response.refreshToken,
           username: response.username,
-        }),
+        })
       );
 
       router.push("/dashboard");
@@ -132,7 +117,7 @@ export default function LoginPage() {
        */
       if (status === 401) {
         setLoginError(
-          "Invalid email or password. Please check your credentials and try again.",
+          "Invalid email or password. Please check your credentials and try again."
         );
 
         return;
@@ -142,40 +127,20 @@ export default function LoginPage() {
        * 429 - Rate limit exceeded
        */
       if (status === 429) {
-        let seconds = 30;
-
-        if (axios.isAxiosError(error)) {
-          const retryAfter = error.response?.headers?.["retry-after"];
-
-          if (retryAfter) {
-            const parsedSeconds = Number(retryAfter);
-
-            if (!Number.isNaN(parsedSeconds) && parsedSeconds > 0) {
-              seconds = Math.ceil(parsedSeconds);
-            }
-          }
-        }
-
         setLoginError(
-          "Too many login attempts. Please wait before trying again.",
+          "Too many login attempts. Please try again later."
         );
-
-        setBlockReason("rateLimit");
-        setRetrySeconds(seconds);
 
         return;
       }
 
       /*
-       * 503 - Circuit breaker / login service unavailable
+       * 503 - Login service unavailable
        */
       if (status === 503) {
         setLoginError(
-          "Login service is temporarily unavailable. Please try again shortly.",
+          "Login service is temporarily unavailable. Please try again shortly."
         );
-
-        setBlockReason("serviceUnavailable");
-        setRetrySeconds(10);
 
         return;
       }
@@ -183,9 +148,12 @@ export default function LoginPage() {
       /*
        * Network error
        */
-      if (axios.isAxiosError(error) && !error.response) {
+      if (
+        axios.isAxiosError(error) &&
+        !error.response
+      ) {
         setLoginError(
-          "Unable to connect to the login service. Please check your connection and try again.",
+          "Unable to connect to the login service. Please check your connection and try again."
         );
 
         return;
@@ -194,21 +162,22 @@ export default function LoginPage() {
       /*
        * Other unexpected errors
        */
-      setLoginError("Something went wrong. Please try again later.");
+      setLoginError(
+        "Something went wrong. Please try again later."
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
-  const isFormDisabled = isLoading || blockReason !== null;
+  const isFormDisabled = isLoading;
 
   return (
     <PublicRoute>
-      <AnimatedBackground />
-
-      <main className="relative min-h-screen overflow-hidden bg-transparent flex items-center justify-center px-4 py-8 sm:py-10">
+      <main className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-8 sm:py-10">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl shadow-lg border border-slate-200 px-5 py-7 sm:px-9 sm:py-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl">
+
             {/* Heading */}
             <div className="mb-2">
               <div className="flex justify-center mb-0">
@@ -223,7 +192,7 @@ export default function LoginPage() {
               </div>
 
               <div className="text-center">
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#0b1f3a]">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#004C8C]">
                   Sign in
                 </h2>
 
@@ -235,33 +204,20 @@ export default function LoginPage() {
 
             {/* Login Error */}
             {loginError && (
-              <div
-                className={`mb-5 rounded-lg border px-4 py-3 ${blockReason
-                    ? "border-amber-200 bg-amber-50"
-                    : "border-red-200 bg-red-50"
-                  }`}
-              >
-                <p
-                  className={`text-sm leading-5 ${blockReason ? "text-amber-700" : "text-red-600"
-                    }`}
-                >
+              <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
+                <p className="text-sm leading-5 text-red-600">
                   {loginError}
                 </p>
-
-                {/* Countdown */}
-                {blockReason && retrySeconds > 0 && (
-                  <div className="mt-2">
-                    <p className="text-xs font-medium text-slate-600">
-                      Try again{" "}
-                      <span className="font-bold">in {retrySeconds}s</span>
-                    </p>
-                  </div>
-                )}
               </div>
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} noValidate className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="space-y-5"
+            >
+
               {/* Email */}
               <div>
                 <label
@@ -274,10 +230,11 @@ export default function LoginPage() {
                 <div className="relative group">
                   <Mail
                     size={19}
-                    className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${isFormDisabled
+                    className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                      isFormDisabled
                         ? "text-slate-300"
                         : "text-slate-400 group-hover:text-[#d71920] group-focus-within:text-[#d71920]"
-                      }`}
+                    }`}
                   />
 
                   <input
@@ -291,18 +248,22 @@ export default function LoginPage() {
                       setEmailError("");
                       setLoginError("");
                     }}
-                    className={`w-full rounded-lg border bg-white py-3 pl-10 pr-4 text-sm text-slate-900 outline-none transition-all duration-200 ${emailError
+                    className={`w-full rounded-lg border bg-white py-3 pl-10 pr-4 text-sm text-slate-900 outline-none transition-all duration-200 ${
+                      emailError
                         ? "border-red-400 focus:ring-2 focus:ring-red-100"
                         : "border-slate-300 hover:border-slate-400 hover:shadow-sm focus:border-[#d71920] focus:ring-2 focus:ring-red-100 focus:shadow-md"
-                      } ${isFormDisabled
+                    } ${
+                      isFormDisabled
                         ? "cursor-not-allowed bg-slate-100 text-slate-400"
                         : ""
-                      }`}
+                    }`}
                   />
                 </div>
 
                 {emailError && (
-                  <p className="mt-2 text-sm text-red-500">{emailError}</p>
+                  <p className="mt-2 text-sm text-red-500">
+                    {emailError}
+                  </p>
                 )}
               </div>
 
@@ -318,14 +279,19 @@ export default function LoginPage() {
                 <div className="relative group">
                   <LockKeyhole
                     size={19}
-                    className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${isFormDisabled
+                    className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                      isFormDisabled
                         ? "text-slate-300"
                         : "text-slate-400 group-hover:text-[#d71920] group-focus-within:text-[#d71920] group-focus-within:scale-110"
-                      }`}
+                    }`}
                   />
 
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
                     id="password"
                     placeholder="Enter your password"
                     value={password}
@@ -335,30 +301,44 @@ export default function LoginPage() {
                       setPasswordError("");
                       setLoginError("");
                     }}
-                    className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition-all duration-200 ${passwordError
+                    className={`w-full rounded-lg border bg-white py-3 pl-10 pr-12 text-sm text-slate-900 outline-none transition-all duration-200 ${
+                      passwordError
                         ? "border-red-400 focus:ring-2 focus:ring-red-100"
                         : "border-slate-300 hover:border-slate-400 hover:shadow-sm focus:border-[#d71920] focus:ring-2 focus:ring-red-100 focus:shadow-md"
-                      } ${isFormDisabled
+                    } ${
+                      isFormDisabled
                         ? "cursor-not-allowed bg-slate-100 text-slate-400"
                         : ""
-                      }`}
+                    }`}
                   />
 
                   <button
                     type="button"
                     disabled={isFormDisabled}
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() =>
+                      setShowPassword(
+                        !showPassword
+                      )
+                    }
                     className="absolute right-2.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition-all duration-200 hover:bg-red-50 hover:text-[#d71920] hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:text-slate-300 disabled:hover:bg-transparent"
                     aria-label={
-                      showPassword ? "Hide password" : "Show password"
+                      showPassword
+                        ? "Hide password"
+                        : "Show password"
                     }
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword ? (
+                      <EyeOff size={18} />
+                    ) : (
+                      <Eye size={18} />
+                    )}
                   </button>
                 </div>
 
                 {passwordError && (
-                  <p className="mt-2 text-sm text-red-500">{passwordError}</p>
+                  <p className="mt-2 text-sm text-red-500">
+                    {passwordError}
+                  </p>
                 )}
               </div>
 
@@ -366,13 +346,15 @@ export default function LoginPage() {
               <div className="flex justify-end">
                 <Link
                   href="/reset-password"
-                  className={`group inline-flex items-center gap-1 text-sm font-medium transition-all duration-200 ${isFormDisabled
+                  className={`group inline-flex items-center gap-1 text-sm font-medium transition-all duration-200 ${
+                    isFormDisabled
                       ? "pointer-events-none text-slate-300"
                       : "text-[#d71920] hover:text-red-700"
-                    }`}
+                  }`}
                 >
                   <span className="relative">
                     Forgot password?
+
                     <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#d71920] transition-all duration-300 group-hover:w-full" />
                   </span>
 
@@ -389,21 +371,18 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isFormDisabled}
-                className={`group w-full rounded-lg py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 ${isFormDisabled
+                className={`group w-full rounded-lg py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 ${
+                  isFormDisabled
                     ? "cursor-not-allowed bg-red-300"
                     : "bg-[#d71920] hover:bg-red-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
-                  }`}
+                }`}
               >
-                <span className="inline-flex items-center justify-center gap-2">
+                <span className="inline-flex items-center justify-center gap-2 ">
                   {isLoading
                     ? "Signing in..."
-                    : blockReason === "rateLimit"
-                      ? `Try again in ${retrySeconds}s`
-                      : blockReason === "serviceUnavailable"
-                        ? `Try again in ${retrySeconds}s`
-                        : "Sign in"}
+                    : "Sign in"}
 
-                  {!isLoading && !blockReason && (
+                  {!isLoading && (
                     <ArrowRight
                       size={17}
                       aria-hidden="true"
@@ -422,12 +401,14 @@ export default function LoginPage() {
 
               <Link
                 href="/register"
-                className={`group inline-flex items-center gap-1 mt-2 text-sm font-semibold transition-all duration-200 ${isFormDisabled
+                className={`group inline-flex items-center gap-1 mt-2 text-sm font-semibold transition-all duration-200 ${
+                  isFormDisabled
                     ? "pointer-events-none text-slate-300"
                     : "text-[#0b1f3a] hover:text-[#d71920]"
-                  }`}
+                }`}
               >
                 Create an account
+
                 <ArrowRight
                   size={16}
                   className="transition-transform duration-200 group-hover:translate-x-1"

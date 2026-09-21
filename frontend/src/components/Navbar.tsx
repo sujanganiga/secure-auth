@@ -1,18 +1,19 @@
 "use client";
 
 import React from "react";
+
 import axios from "axios";
 import Image from "next/image";
+
 import {
     Menu,
     User,
     LogOut,
     Settings,
     UserCircle,
-    Sun,
-    Moon,
     ChevronDown,
 } from "lucide-react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 
@@ -32,9 +33,6 @@ export default function Navbar({
     const [profileOpen, setProfileOpen] =
         React.useState(false);
 
-    const [darkMode, setDarkMode] =
-        React.useState(false);
-
     const [isLoggingOut, setIsLoggingOut] =
         React.useState(false);
 
@@ -47,11 +45,32 @@ export default function Navbar({
     );
 
     const refreshToken = useSelector(
-        (state: RootState) => state.auth.refreshToken
+        (state: RootState) =>
+            state.auth.refreshToken
     );
 
     const dispatch = useDispatch();
     const router = useRouter();
+
+    /*
+     * Get full username/email
+     *
+     * Example:
+     * sujan@gmail.com → sujan@gmail.com
+     */
+    const fullEmail =
+        user?.username || "User";
+
+    /*
+     * Display only the part before @
+     *
+     * Example:
+     * sujan@gmail.com → sujan
+     */
+    const displayUsername =
+        fullEmail.includes("@")
+            ? fullEmail.split("@")[0]
+            : fullEmail;
 
     const handleLogout = async () => {
         if (isLoggingOut) {
@@ -62,11 +81,14 @@ export default function Navbar({
             setIsLoggingOut(true);
 
             const currentToken =
-                token || localStorage.getItem("token");
+                token ||
+                localStorage.getItem("token");
 
             const currentRefreshToken =
                 refreshToken ||
-                localStorage.getItem("refreshToken");
+                localStorage.getItem(
+                    "refreshToken"
+                );
 
             if (
                 currentToken &&
@@ -82,6 +104,11 @@ export default function Navbar({
                 );
             }
         } catch (error: unknown) {
+            /*
+             * If backend already considers the
+             * session expired, we still complete
+             * frontend logout.
+             */
             if (
                 axios.isAxiosError(error) &&
                 error.response?.status === 401
@@ -152,6 +179,7 @@ export default function Navbar({
                     className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition-all duration-200 hover:bg-gray-100 disabled:opacity-60"
                     aria-label="Open profile menu"
                 >
+                    {/* Profile Icon */}
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 transition-all duration-200 hover:bg-red-50">
                         <User
                             size={19}
@@ -159,10 +187,12 @@ export default function Navbar({
                         />
                     </div>
 
+                    {/* Username - only before @ */}
                     <span className="hidden md:block max-w-32 truncate text-sm font-medium text-gray-800">
-                        {user?.username || "User"}
+                        {displayUsername}
                     </span>
 
+                    {/* Dropdown Arrow */}
                     <ChevronDown
                         size={16}
                         className={`hidden md:block text-gray-500 transition-transform duration-200 ${
@@ -176,7 +206,7 @@ export default function Navbar({
                 {/* Profile Dropdown */}
                 {profileOpen && (
                     <>
-                        {/* Small click-away area */}
+                        {/* Click-away area */}
                         <div
                             className="fixed inset-0 z-40"
                             onClick={() =>
@@ -184,118 +214,66 @@ export default function Navbar({
                             }
                         />
 
-                        <div className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
+                        {/* Dropdown */}
+                        <div className="absolute right-0 top-12 z-50 w-72 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
 
                             {/* User Info */}
                             <div className="border-b border-gray-200 px-4 py-4">
                                 <div className="flex items-center gap-3">
 
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
+                                    {/* User Icon */}
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100">
                                         <User
                                             size={20}
                                             className="text-gray-700"
                                         />
                                     </div>
 
+                                    {/* User Details */}
                                     <div className="min-w-0">
+                                        {/* Username */}
                                         <p className="truncate text-sm font-semibold text-gray-900">
-                                            {user?.username ||
-                                                "User"}
+                                            {displayUsername}
                                         </p>
 
-                                        <p className="text-xs text-gray-500">
-                                            Logged in
+                                        {/* Full Email */}
+                                        <p className="mt-1 truncate text-xs text-gray-500">
+                                            {fullEmail}
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
 
-                            {/* Profile */}
+                            {/* Profile - NOT IMPLEMENTED */}
                             <button
                                 type="button"
-                                onClick={() => {
-                                    setProfileOpen(
-                                        false
-                                    );
-                                    router.push(
-                                        "/profile"
-                                    );
-                                }}
+                                aria-disabled="true"
+                                title="Coming soon"
                                 className="group flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition-colors duration-200 hover:bg-red-50 hover:text-[#d71920]"
                             >
                                 <UserCircle
                                     size={18}
-                                    className="transition-colors group-hover:text-[#d71920]"
+                                    className="transition-colors duration-200 group-hover:text-[#d71920]"
                                 />
+
                                 Profile
                             </button>
 
-                            {/* Settings */}
+                            {/* Settings - NOT IMPLEMENTED */}
                             <button
                                 type="button"
-                                onClick={() => {
-                                    setProfileOpen(
-                                        false
-                                    );
-                                    router.push(
-                                        "/settings"
-                                    );
-                                }}
+                                aria-disabled="true"
+                                title="Coming soon"
                                 className="group flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition-colors duration-200 hover:bg-red-50 hover:text-[#d71920]"
                             >
                                 <Settings
                                     size={18}
-                                    className="transition-colors group-hover:text-[#d71920]"
+                                    className="transition-colors duration-200 group-hover:text-[#d71920]"
                                 />
+
                                 Settings
                             </button>
-
-                            {/* Theme */}
-                            <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3">
-
-                                <div className="flex items-center gap-3 text-sm text-gray-700">
-                                    {darkMode ? (
-                                        <Moon
-                                            size={18}
-                                            className="text-[#d71920]"
-                                        />
-                                    ) : (
-                                        <Sun
-                                            size={18}
-                                            className="text-[#d71920]"
-                                        />
-                                    )}
-
-                                    {darkMode
-                                        ? "Dark mode"
-                                        : "Light mode"}
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setDarkMode(
-                                            !darkMode
-                                        )
-                                    }
-                                    className={`relative h-6 w-11 rounded-full transition-colors duration-300 ${
-                                        darkMode
-                                            ? "bg-[#d71920]"
-                                            : "bg-gray-300"
-                                    }`}
-                                    aria-label="Toggle theme"
-                                >
-                                    <span
-                                        className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-300 ${
-                                            darkMode
-                                                ? "translate-x-5"
-                                                : "translate-x-0"
-                                        }`}
-                                    />
-                                </button>
-
-                            </div>
 
                             {/* Logout */}
                             <button
