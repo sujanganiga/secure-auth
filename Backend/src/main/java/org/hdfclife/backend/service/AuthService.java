@@ -57,10 +57,14 @@ public class AuthService {
 
         ExternalLoginResponse response = loginCircuitBreakerService.login(externalRequest);
 
+
+
         if(!response.isAuthenticated())
         {
             throw new InvalidCredentialException("Invalid username or password");
         }
+
+
 
         String token=jwtService.generateToken(response.getUsername());
         String refreshToken=jwtService.generateRefreshToken(response.getUsername());
