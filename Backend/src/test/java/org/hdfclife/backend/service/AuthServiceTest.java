@@ -174,18 +174,33 @@ class AuthServiceTest {
     void shouldLogoutSuccessfully() {
 
         String token = "valid-token";
-        String refreshToken="refresh-token";
+        String refreshToken = "refresh-token";
 
         when(tokenStore.containsToken(token))
                 .thenReturn(true);
+
         when(refreshTokenStore.containsToken(refreshToken))
                 .thenReturn(true);
 
-        authService.logout(token,refreshToken);
+        when(jwtService.validateToken(token))
+                .thenReturn(true);
+
+        when(jwtService.validateToken(refreshToken))
+                .thenReturn(true);
+
+        when(jwtService.isRefreshToken(refreshToken))
+                .thenReturn(true);
+
+        when(jwtService.extractUsername(token))
+                .thenReturn("test-user");
+
+        when(jwtService.extractUsername(refreshToken))
+                .thenReturn("test-user");
+
+        authService.logout(token, refreshToken);
 
         verify(tokenStore).removeToken(token);
-        verify(refreshTokenStore)
-                .removeToken(refreshToken);
+        verify(refreshTokenStore).removeToken(refreshToken);
     }
 
 

@@ -235,13 +235,13 @@ class AuthControllerTest {
 
         doNothing()
                 .when(authService)
-                .logout("valid-token","valid-refresh-token");
+                .logout("valid-token", "valid-refresh-token");
 
         mockMvc.perform(
                         post("/logout")
                                 .header("Authorization", "Bearer valid-token")
                                 .header(
-                                        "X-Refresh-Token",
+                                        "Refresh-Token",
                                         "valid-refresh-token"
                                 )
                 )
@@ -250,9 +250,8 @@ class AuthControllerTest {
                         .value("Logout successful"));
 
         verify(authService)
-                .logout("valid-token","valid-refresh-token");
+                .logout("valid-token", "valid-refresh-token");
     }
-
     @Test
     void shouldRejectLogoutWithoutAuthorizationHeader() throws Exception {
 
