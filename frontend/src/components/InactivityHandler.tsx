@@ -16,7 +16,8 @@ import { RootState } from "@/store/store";
 import { logoutApi } from "@/services/authService";
 
 // const INACTIVITY_TIME = 10 * 60 * 1000; // 10 minutes
-const INACTIVITY_TIME = 5 * 1000; // 5 seconds for testing
+
+const INACTIVITY_TIME = 10 * 1000; // 10 seconds for testing
 
 const WARNING_TIME = 5; // Last 5 seconds
 
@@ -95,7 +96,8 @@ export default function InactivityHandler() {
             setShowWarning(false);
 
             /*
-             * Get latest tokens
+             * Get latest tokens BEFORE
+             * clearing frontend authentication.
              */
             const token =
                 localStorage.getItem("token");
@@ -106,17 +108,10 @@ export default function InactivityHandler() {
                 );
 
             /*
-             * Clear frontend authentication immediately
-             */
-            dispatch(logout());
-
-            /*
-             * Redirect immediately
-             */
-            router.replace("/login");
-
-            /*
-             * Try backend logout separately
+             * Try backend logout FIRST.
+             *
+             * This is important because logout()
+             * removes the tokens from localStorage.
              */
             if (
                 token &&
@@ -133,14 +128,27 @@ export default function InactivityHandler() {
                     );
                 } catch (error: unknown) {
                     /*
-                     * Backend logout failure should
-                     * not prevent frontend logout.
+                     * Backend may reject an already
+                     * expired/invalid access token.
+                     *
+                     * Frontend logout should still
+                     * continue.
                      */
                     console.log(
                         "Backend logout could not be completed."
                     );
                 }
             }
+
+            /*
+             * Clear frontend authentication
+             */
+            dispatch(logout());
+
+            /*
+             * Redirect to login
+             */
+            router.replace("/login");
         };
 
         const startWarning = () => {
@@ -209,15 +217,8 @@ export default function InactivityHandler() {
         };
 
         /*
-         * User is logged out.
-         *
-         * We do NOT call setState here because
-         * React warns against synchronous state
-         * updates directly inside an effect.
-         *
-         * shouldShowWarning already uses
-         * isAuthenticated, so the popup disappears
-         * automatically.
+         * If user is not authenticated,
+         * don't run inactivity timer.
          */
         if (!isAuthenticated) {
             clearTimers();
@@ -229,12 +230,6 @@ export default function InactivityHandler() {
             };
         }
 
-        /*
-         * New authenticated session.
-         *
-         * Reset the logout lock so inactivity
-         * logout works again after second login.
-         */
         isLoggingOut.current = false;
 
         const events = [
@@ -289,7 +284,7 @@ export default function InactivityHandler() {
                         </div>
 
                         {/* Heading */}
-                        <h2 className="text-xl font-semibold text-[#0b1f3a]">
+                        <h2 className="text-xl font-semibold text-[#004C8C]">
                             Session Timeout
                         </h2>
 
