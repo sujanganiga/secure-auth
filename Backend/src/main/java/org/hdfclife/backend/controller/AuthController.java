@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RefreshRequest;
