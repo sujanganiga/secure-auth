@@ -96,25 +96,10 @@ public class AuthService {
         return jwtService.extractUsername(token);
     }
 
-    public void logout(String token,String refreshToken)
-    {
-        if(!tokenStore.containsToken(token))
-        {
-            throw new InvalidTokenException(
-                    "Invalid or already logged out token"
-            );
-        }
+    public void logout(String token, String refreshToken) {
 
-        if (!jwtService.validateToken(token)) {
-            tokenStore.removeToken(token);
-
-            throw new InvalidTokenException(
-                    "Access token expired or invalid"
-            );
-        }
 
         if (!refreshTokenStore.containsToken(refreshToken)) {
-
             throw new InvalidTokenException(
                     "Invalid or already logged out refresh token"
             );
@@ -129,22 +114,37 @@ public class AuthService {
             );
         }
 
+
         if (!jwtService.isRefreshToken(refreshToken)) {
             throw new InvalidTokenException(
                     "Invalid refresh token"
             );
         }
 
-        String accessUsername = jwtService.extractUsername(token);
-        String refreshUsername = jwtService.extractUsername(refreshToken);
 
-        if (!accessUsername.equals(refreshUsername)) {
-            throw new InvalidTokenException(
-                    "Access token and refresh token do not belong to the same user"
-            );
+        String refreshUsername =
+                jwtService.extractUsername(refreshToken);
+
+
+        if (tokenStore.containsToken(token)) {
+
+
+            if (jwtService.validateToken(token)) {
+
+                String accessUsername =
+                        jwtService.extractUsername(token);
+
+                if (!accessUsername.equals(refreshUsername)) {
+                    throw new InvalidTokenException(
+                            "Access token and refresh token do not belong to the same user"
+                    );
+                }
+            }
+
+            tokenStore.removeToken(token);
         }
 
-        tokenStore.removeToken(token);
+
         refreshTokenStore.removeToken(refreshToken);
     }
 

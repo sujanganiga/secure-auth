@@ -210,12 +210,12 @@ class AuthServiceTest {
         String token = "already-logged-out-token";
         String refreshToken = "refresh-token";
 
-        when(tokenStore.containsToken(token))
+        when(refreshTokenStore.containsToken(refreshToken))
                 .thenReturn(false);
 
         assertThrows(
                 InvalidTokenException.class,
-                () -> authService.logout(token,refreshToken)
+                () -> authService.logout(token, refreshToken)
         );
     }
 }
