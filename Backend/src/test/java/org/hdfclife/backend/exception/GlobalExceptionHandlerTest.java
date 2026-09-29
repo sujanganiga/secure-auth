@@ -1,7 +1,8 @@
 package org.hdfclife.backend.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.hdfclife.backend.exception.DatabaseServiceUnavailableException;
+import org.springframework.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
@@ -123,4 +124,20 @@ class GlobalExceptionHandlerTest {
 
         assertEquals(503, response.getStatusCode().value());
     }
+
+    @Test
+    void shouldHandleDatabaseServiceUnavailable() {
+
+        DatabaseServiceUnavailableException exception =
+                new DatabaseServiceUnavailableException(
+                        "Database service is temporarily unavailable"
+                );
+
+        ResponseEntity<?> response =
+                handler.handleDatabaseServiceUnavailable(
+                        exception
+                );
+
+        assertEquals(503, response.getStatusCode().value());    }
+
 }

@@ -6,6 +6,7 @@ import org.hdfclife.backend.exception.LoginRateLimitExceededException;
 import org.hdfclife.backend.exception.UsernameAlreadyExistsException;
 import org.hdfclife.backend.service.AuthService;
 import org.hdfclife.backend.resilience.LoginRateLimiterService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,28 +18,24 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import org.hdfclife.backend.dto.RegisterRequest;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.springframework.http.MediaType;
-
 import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.never;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.springframework.http.MediaType;
 
 @ExtendWith(MockitoExtension.class)
 class AuthControllerTest {
@@ -70,15 +67,18 @@ class AuthControllerTest {
     void shouldRegisterUserSuccessfully() throws Exception {
 
         RegisterRequest request =
-                new RegisterRequest("testuser", "testpassword");
+                new RegisterRequest(
+                        "testuser@gmail.com",
+                        "Test@123"
+                );
 
         mockMvc.perform(
                         post("/register")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                             {
-                                "username": "testuser",
-                                "password": "testpassword"
+                                "username": "testuser@gmail.com",
+                                "password": "Test@123"
                             }
                             """)
                 )
@@ -97,7 +97,7 @@ class AuthControllerTest {
                 new AuthResponse(
                         "test-jwt-token",
                         "test-refresh-token",
-                        "testuser",
+                        "testuser@gmail.com",
                         "Login Successful"
                 );
 
@@ -109,8 +109,8 @@ class AuthControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                             {
-                                "username": "testuser",
-                                "password": "testpassword"
+                                "username": "testuser@gmail.com",
+                                "password": "Test@123"
                             }
                             """)
                 )
@@ -118,7 +118,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.token")
                         .value("test-jwt-token"))
                 .andExpect(jsonPath("$.username")
-                        .value("testuser"));
+                        .value("testuser@gmail.com"));
 
         verify(loginRateLimiterService)
                 .checkLoginAttempt(anyString(), anyString());
@@ -126,6 +126,7 @@ class AuthControllerTest {
         verify(authService)
                 .login(any(LoginRequest.class));
     }
+
 
     @Test
     void shouldRejectDuplicateUsername() throws Exception {
@@ -139,8 +140,8 @@ class AuthControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                             {
-                                "username": "testuser",
-                                "password": "testpassword"
+                                "username": "testuser@gmail.com",
+                                "password": "Test@123"
                             }
                             """)
                 )
@@ -148,6 +149,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.error")
                         .value("USERNAME_ALREADY_EXISTS"));
     }
+
 
     @Test
     void shouldRejectInvalidCredentials() throws Exception {
@@ -162,8 +164,8 @@ class AuthControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                             {
-                                "username": "testuser",
-                                "password": "wrongpassword"
+                                "username": "testuser@gmail.com",
+                                "password": "Wrong@123"
                             }
                             """)
                 )
@@ -171,6 +173,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.error")
                         .value("INVALID_CREDENTIALS"));
     }
+
 
     @Test
     void shouldRejectLoginWhenRateLimitExceeded() throws Exception {
@@ -186,8 +189,8 @@ class AuthControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                             {
-                                "username": "testuser",
-                                "password": "testpassword"
+                                "username": "testuser@gmail.com",
+                                "password": "Test@123"
                             }
                             """)
                 )
@@ -199,6 +202,7 @@ class AuthControllerTest {
                 .login(any(LoginRequest.class));
     }
 
+
     @Test
     void shouldRejectAuthWithoutAuthorizationHeader() throws Exception {
 
@@ -207,8 +211,9 @@ class AuthControllerTest {
                 )
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.Message")
-                        .value("Bearer token is required"));
+                        .value("Authentication is required"));
     }
+
 
     @Test
     void shouldAuthenticateValidToken() throws Exception {
@@ -225,6 +230,7 @@ class AuthControllerTest {
 
     }
 
+
     @Test
     void shouldLogoutSuccessfully() throws Exception {
 
@@ -234,7 +240,10 @@ class AuthControllerTest {
 
         mockMvc.perform(
                         post("/logout")
-                                .header("Authorization", "Bearer valid-token")
+                                .header(
+                                        "Authorization",
+                                        "Bearer valid-token"
+                                )
                                 .header(
                                         "Refresh-Token",
                                         "valid-refresh-token"
@@ -247,6 +256,8 @@ class AuthControllerTest {
         verify(authService)
                 .logout("valid-token", "valid-refresh-token");
     }
+
+
     @Test
     void shouldRejectLogoutWithoutAuthorizationHeader() throws Exception {
 

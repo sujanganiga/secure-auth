@@ -107,6 +107,19 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler(DatabaseServiceUnavailableException.class)
+    public ResponseEntity<?> handleDatabaseServiceUnavailable(
+            DatabaseServiceUnavailableException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(Map.of(
+                        "error", "DATABASE_SERVICE_UNAVAILABLE",
+                        "message", ex.getMessage(),
+                        "status", 503
+                ));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnexpectedException(
             Exception ex) {

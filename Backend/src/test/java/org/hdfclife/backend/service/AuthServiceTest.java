@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+import org.hdfclife.backend.resilience.DatabaseCircuitBreakerService;
 import org.hdfclife.backend.dto.*;
 import org.hdfclife.backend.entity.User;
 import org.hdfclife.backend.exception.InvalidCredentialException;
@@ -26,6 +27,8 @@ class AuthServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private DatabaseCircuitBreakerService databaseCircuitBreakerService;
     @Mock
     private PasswordEncoder passwordEncoder;
 
@@ -51,7 +54,7 @@ class AuthServiceTest {
         RegisterRequest request =
                 new RegisterRequest("vanitha", "password123");
 
-        when(userRepository.existsByUsername("vanitha"))
+        when(databaseCircuitBreakerService.existsByUsername("vanitha"))
                 .thenReturn(false);
 
         when(passwordEncoder.encode("password123"))
@@ -59,7 +62,7 @@ class AuthServiceTest {
 
         authService.register(request);
 
-        verify(userRepository).save(any(User.class));
+        verify(databaseCircuitBreakerService).save(any(User.class));
     }
 
 
@@ -69,7 +72,7 @@ class AuthServiceTest {
         RegisterRequest request =
                 new RegisterRequest("vanitha", "password123");
 
-        when(userRepository.existsByUsername("vanitha"))
+        when(databaseCircuitBreakerService.existsByUsername("vanitha"))
                 .thenReturn(true);
 
         assertThrows(
@@ -77,7 +80,8 @@ class AuthServiceTest {
                 () -> authService.register(request)
         );
 
-        verify(userRepository, never()).save(any(User.class));
+        verify(databaseCircuitBreakerService, never())
+                .save(any(User.class));
     }
 
 

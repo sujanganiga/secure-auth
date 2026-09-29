@@ -54,7 +54,7 @@ public class AuthController {
     })
     @PostMapping("/register")
     public ResponseEntity<?> register(
-            @RequestBody RegisterRequest request) {
+            @Valid @RequestBody RegisterRequest request) {
 
         authService.register(request);
 
@@ -87,7 +87,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
-            @RequestBody LoginRequest loginRequest,
+            @Valid @RequestBody LoginRequest loginRequest,
             HttpServletRequest request) {
 
         String username = loginRequest.getUsername();

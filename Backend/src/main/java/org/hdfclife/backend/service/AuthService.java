@@ -1,5 +1,6 @@
 package org.hdfclife.backend.service;
 
+import org.hdfclife.backend.resilience.DatabaseCircuitBreakerService;
 import org.hdfclife.backend.dto.AuthResponse;
 import org.hdfclife.backend.dto.LoginRequest;
 import org.hdfclife.backend.dto.RegisterRequest;
@@ -25,7 +26,8 @@ public class AuthService {
     private final TokenStore tokenStore;
     private final LoginCircuitBreakerService loginCircuitBreakerService;
     private final RefreshTokenStore refreshTokenStore;
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, TokenStore tokenStore, LoginCircuitBreakerService loginCircuitBreakerService,RefreshTokenStore refreshTokenStore)
+    private final DatabaseCircuitBreakerService databaseCircuitBreakerService;
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, TokenStore tokenStore, LoginCircuitBreakerService loginCircuitBreakerService, RefreshTokenStore refreshTokenStore, DatabaseCircuitBreakerService databaseCircuitBreakerService)
     {
         this.userRepository=userRepository;
         this.passwordEncoder=passwordEncoder;
@@ -33,18 +35,18 @@ public class AuthService {
         this.tokenStore=tokenStore;
         this.loginCircuitBreakerService = loginCircuitBreakerService;
         this.refreshTokenStore=refreshTokenStore;
+        this.databaseCircuitBreakerService = databaseCircuitBreakerService;
     }
 
     public void register(RegisterRequest request)
     {
-        if(userRepository.existsByUsername(request.getUsername()))
+        if(databaseCircuitBreakerService.existsByUsername(request.getUsername()))
         {
             throw new UsernameAlreadyExistsException("Username already exists");
         }
         String hashedPassword=passwordEncoder.encode(request.getPassword());
         User user=new User(request.getUsername(),hashedPassword);
-        userRepository.save(user);
-    }
+        databaseCircuitBreakerService.save(user);    }
 
 
     public AuthResponse login(LoginRequest request)
@@ -72,7 +74,6 @@ public class AuthService {
         refreshTokenStore.addToken(refreshToken);
 
         return new AuthResponse(token,refreshToken,response.getUsername(),"Login Successful");
-
     }
 
     public void logout(String token, String refreshToken) {
