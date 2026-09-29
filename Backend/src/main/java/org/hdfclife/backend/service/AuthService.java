@@ -75,27 +75,6 @@ public class AuthService {
 
     }
 
-    public String authenticate(String token)
-    {
-        if(!tokenStore.containsToken(token))
-        {
-            throw new InvalidTokenException(
-                    "Token is invalid"
-            );
-        }
-
-        if(!jwtService.validateToken(token))
-        {
-            tokenStore.removeToken(token);
-
-            throw new InvalidTokenException(
-                    "Token expired or invalid"
-            );
-        }
-
-        return jwtService.extractUsername(token);
-    }
-
     public void logout(String token, String refreshToken) {
 
 

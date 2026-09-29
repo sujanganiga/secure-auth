@@ -213,12 +213,9 @@ class AuthControllerTest {
     @Test
     void shouldAuthenticateValidToken() throws Exception {
 
-        when(authService.authenticate("valid-token"))
-                .thenReturn("testuser");
-
         mockMvc.perform(
                         get("/auth")
-                                .header("Authorization", "Bearer valid-token")
+                                .principal(() -> "testuser")
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username")
@@ -226,8 +223,6 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.authenticated")
                         .value(true));
 
-        verify(authService)
-                .authenticate("valid-token");
     }
 
     @Test

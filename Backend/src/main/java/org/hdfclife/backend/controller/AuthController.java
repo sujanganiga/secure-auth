@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.security.Principal;
 
 @RestController
 @Tag(
@@ -119,31 +120,23 @@ public class AuthController {
     })
     @GetMapping("/auth")
     public ResponseEntity<?> auth(
-            @RequestHeader(
-                    value = "Authorization",
-                    required = false
-            ) String authorization) {
+            Principal principal) {
 
-        if (authorization == null ||
-                !authorization.startsWith("Bearer ")) {
+        if (principal == null) {
 
             return ResponseEntity
                     .status(401)
                     .body(
                             Map.of(
                                     "Message",
-                                    "Bearer token is required"
+                                    "Authentication is required"
                             )
                     );
         }
 
-        String token = authorization.substring(7);
-
-        String username = authService.authenticate(token);
-
         return ResponseEntity.ok(
                 Map.of(
-                        "username", username,
+                        "username", principal.getName(),
                         "authenticated", true
                 )
         );
