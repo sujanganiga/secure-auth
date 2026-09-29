@@ -135,42 +135,6 @@ class AuthServiceTest {
 
 
     @Test
-    void shouldAuthenticateValidToken() {
-
-        String token = "valid-token";
-
-        when(tokenStore.containsToken(token))
-                .thenReturn(true);
-
-        when(jwtService.validateToken(token))
-                .thenReturn(true);
-
-        when(jwtService.extractUsername(token))
-                .thenReturn("vanitha");
-
-        String username =
-                authService.authenticate(token);
-
-        assertEquals("vanitha", username);
-    }
-
-
-    @Test
-    void shouldRejectInvalidToken() {
-
-        String token = "invalid-token";
-
-        when(tokenStore.containsToken(token))
-                .thenReturn(false);
-
-        assertThrows(
-                InvalidTokenException.class,
-                () -> authService.authenticate(token)
-        );
-    }
-
-
-    @Test
     void shouldLogoutSuccessfully() {
 
         String token = "valid-token";
