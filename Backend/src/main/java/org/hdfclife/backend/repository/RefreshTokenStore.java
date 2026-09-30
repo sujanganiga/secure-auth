@@ -1,25 +1,42 @@
 package org.hdfclife.backend.repository;
 
-import org.springframework.stereotype.Component;
+import org.hdfclife.backend.entity.RefreshToken;
+import org.springframework.stereotype.Repository;
 
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
 
-@Component
+@Repository
 public class RefreshTokenStore {
 
-    private final Set<String> activeRefreshTokens =
-            ConcurrentHashMap.newKeySet();
+    private final RefreshTokenRepository refreshTokenRepository;
+
+    public RefreshTokenStore(RefreshTokenRepository refreshTokenRepository) {
+        this.refreshTokenRepository = refreshTokenRepository;
+    }
 
     public void addToken(String token) {
-        activeRefreshTokens.add(token);
+        refreshTokenRepository.save(new RefreshToken(hashToken(token)));
     }
 
     public boolean containsToken(String token) {
-        return activeRefreshTokens.contains(token);
+        return refreshTokenRepository.existsByTokenHash(hashToken(token));
     }
 
     public void removeToken(String token) {
-        activeRefreshTokens.remove(token);
+        refreshTokenRepository.deleteByTokenHash(hashToken(token));
+    }
+
+    private String hashToken(String token) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            return HexFormat.of().formatHex(
+                    digest.digest(token.getBytes(StandardCharsets.UTF_8))
+            );
+        } catch (NoSuchAlgorithmException exception) {
+            throw new IllegalStateException("SHA-256 is unavailable", exception);
+        }
     }
 }
