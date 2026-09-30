@@ -7,11 +7,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hdfclife.backend.dto.ExternalLoginRequest;
 import org.hdfclife.backend.dto.ExternalLoginResponse;
 import org.hdfclife.backend.entity.User;
+import org.hdfclife.backend.exception.DatabaseServiceUnavailableException;
 import org.hdfclife.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.TransactionException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -52,6 +55,10 @@ public class MockExternalLoginController {
             @ApiResponse(
                     responseCode = "500",
                     description = "Mock external service failure"
+            ),
+            @ApiResponse(
+                    responseCode = "503",
+                    description = "Database unavailable"
             )
     })
     @PostMapping("/external-login")
@@ -64,9 +71,16 @@ public class MockExternalLoginController {
                     .build();
         }
 
-        User user = userRepository
-                .findByUsername(request.getUsername())
-                .orElse(null);
+        User user;
+        try {
+            user = userRepository
+                    .findByUsername(request.getUsername())
+                    .orElse(null);
+        } catch (DataAccessException | TransactionException ex) {
+            throw new DatabaseServiceUnavailableException(
+                    "Database service is temporarily unavailable"
+            );
+        }
 
         if (user == null ||
                 !passwordEncoder.matches(

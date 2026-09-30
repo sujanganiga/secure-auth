@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 
 @Component
 public class MockExternalLoginClient implements ExternalLoginClient {
@@ -40,6 +41,13 @@ public class MockExternalLoginClient implements ExternalLoginClient {
             return new ExternalLoginResponse(
                     false,
                     request.getUsername()
+            );
+
+        } catch (RestClientException ex) {
+
+            throw new IllegalStateException(
+                    "External login service call failed",
+                    ex
             );
         }
     }

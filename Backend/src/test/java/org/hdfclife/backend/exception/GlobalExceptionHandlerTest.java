@@ -1,8 +1,8 @@
 package org.hdfclife.backend.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.hdfclife.backend.exception.DatabaseServiceUnavailableException;
-import org.springframework.http.HttpStatus;
+
+import org.springframework.dao.DataAccessException;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
@@ -138,6 +138,19 @@ class GlobalExceptionHandlerTest {
                         exception
                 );
 
-        assertEquals(503, response.getStatusCode().value());    }
+        assertEquals(503, response.getStatusCode().value());
+    }
+
+    @Test
+    void shouldHandleDataAccessExceptionAsServiceUnavailable() {
+
+        DataAccessException exception =
+                new DataAccessException("Connection refused") {};
+
+        ResponseEntity<?> response =
+                handler.handleDatabaseAccessFailure(exception);
+
+        assertEquals(503, response.getStatusCode().value());
+    }
 
 }

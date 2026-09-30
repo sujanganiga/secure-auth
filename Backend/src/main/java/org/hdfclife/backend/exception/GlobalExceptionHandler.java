@@ -4,8 +4,11 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.TransactionException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -120,11 +123,53 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    /**
+     * Safety net for DB failures that bypass DatabaseCircuitBreakerService
+     * (e.g. MockExternalLoginController calling UserRepository directly).
+     */
+    @ExceptionHandler({DataAccessException.class, TransactionException.class})
+    public ResponseEntity<?> handleDatabaseAccessFailure(Exception ex) {
+
+        logger.error("Database access failure while processing request", ex);
+
+        return ResponseEntity
+                .status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(Map.of(
+                        "error", "DATABASE_SERVICE_UNAVAILABLE",
+                        "message", "Database service is temporarily unavailable",
+                        "status", 503
+                ));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleValidation(
+            MethodArgumentNotValidException ex) {
+
+        String message = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .findFirst()
+                .map(error -> error.getDefaultMessage())
+                .orElse("Validation failed");
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of(
+                        "error", "VALIDATION_FAILED",
+                        "message", message,
+                        "status", 400
+                ));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnexpectedException(
             Exception ex) {
 
-        logger.error("Unhandled exception while processing request", ex);
+        logger.error(
+                "Unhandled exception while processing request: {}",
+                ex.getClass().getName(),
+                ex
+        );
 
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)

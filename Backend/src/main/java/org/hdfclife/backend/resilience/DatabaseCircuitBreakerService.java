@@ -1,7 +1,6 @@
 package org.hdfclife.backend.resilience;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataIntegrityViolationException;
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
@@ -12,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -47,9 +47,7 @@ public class DatabaseCircuitBreakerService {
                         CircuitBreakerConfig.SlidingWindowType.COUNT_BASED
                 )
                 .slidingWindowSize(slidingWindowSize)
-                .recordException(
-                        throwable -> throwable instanceof DataAccessException
-                )
+                .recordException(this::isDatabaseFailure)
                 .waitDurationInOpenState(
                         Duration.ofSeconds(waitDurationSeconds)
                 )
@@ -64,6 +62,17 @@ public class DatabaseCircuitBreakerService {
         );
 
         registerCircuitBreakerListeners();
+    }
+
+    /**
+     * Count connection/transaction failures as circuit failures.
+     * CannotCreateTransactionException is a TransactionException, not a DataAccessException.
+     */
+    private boolean isDatabaseFailure(Throwable throwable) {
+        return throwable instanceof DataAccessException
+                || throwable instanceof TransactionException
+                || (throwable.getCause() != null
+                    && isDatabaseFailure(throwable.getCause()));
     }
 
     private void registerCircuitBreakerListeners() {
