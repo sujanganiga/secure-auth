@@ -2,6 +2,7 @@ package org.hdfclife.backend.repository;
 
 import org.hdfclife.backend.entity.RefreshToken;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -24,7 +25,7 @@ public class RefreshTokenStore {
     public boolean containsToken(String token) {
         return refreshTokenRepository.existsByTokenHash(hashToken(token));
     }
-
+    @Transactional
     public void removeToken(String token) {
         refreshTokenRepository.deleteByTokenHash(hashToken(token));
     }
