@@ -71,7 +71,7 @@ public class AuthService {
         String token=jwtService.generateToken(response.getUsername());
         String refreshToken=jwtService.generateRefreshToken(response.getUsername());
         tokenStore.addToken(token);
-        refreshTokenStore.addToken(refreshToken);
+        refreshTokenStore.addToken(refreshToken, jwtService.extractExpiration(refreshToken));
 
         return new AuthResponse(token,refreshToken,response.getUsername(),"Login Successful");
     }
@@ -153,7 +153,7 @@ public class AuthService {
 
         tokenStore.addToken(newAccessToken);
 
-        refreshTokenStore.addToken(newRefreshToken);
+        refreshTokenStore.addToken(newRefreshToken, jwtService.extractExpiration(newRefreshToken));
 
         return new AuthResponse(
                 newAccessToken,

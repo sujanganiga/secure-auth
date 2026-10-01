@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.Instant;
 
 @Entity
 @Table(name = "refresh_tokens")
@@ -18,11 +19,15 @@ public class RefreshToken {
     @Column(name = "token_hash", nullable = false, unique = true, length = 64)
     private String tokenHash;
 
+    @Column(name = "expires_at")
+    private Instant expiresAt;
+
     protected RefreshToken() {
     }
 
-    public RefreshToken(String tokenHash) {
+    public RefreshToken(String tokenHash, Instant expiresAt) {
         this.tokenHash = tokenHash;
+        this.expiresAt = expiresAt;
     }
 
     public Long getId() {
@@ -31,5 +36,9 @@ public class RefreshToken {
 
     public String getTokenHash() {
         return tokenHash;
+    }
+
+    public Instant getExpiresAt() {
+        return expiresAt;
     }
 }

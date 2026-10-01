@@ -173,6 +173,32 @@ class AuthServiceTest {
 
 
     @Test
+    void shouldLogoutSuccessfullyWithExpiredAccessToken() {
+
+        String token = "expired-token";
+        String refreshToken = "refresh-token";
+
+        when(tokenStore.containsToken(token))
+                .thenReturn(true);
+        when(refreshTokenStore.containsToken(refreshToken))
+                .thenReturn(true);
+        when(jwtService.validateToken(token))
+                .thenReturn(false);
+        when(jwtService.validateToken(refreshToken))
+                .thenReturn(true);
+        when(jwtService.isRefreshToken(refreshToken))
+                .thenReturn(true);
+        when(jwtService.extractUsername(refreshToken))
+                .thenReturn("test-user");
+
+        authService.logout(token, refreshToken);
+
+        verify(tokenStore).removeToken(token);
+        verify(refreshTokenStore).removeToken(refreshToken);
+    }
+
+
+    @Test
     void shouldRejectAlreadyLoggedOutToken() {
 
         String token = "already-logged-out-token";
